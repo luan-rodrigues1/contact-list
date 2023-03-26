@@ -38,6 +38,7 @@ export const RegisterSecondColumnStyle = styled.div`
         width: 100%;
         display: flex;
         flex-direction: column;
+        margin-bottom: 10px;
     }
 
     .register-second  form div label {
@@ -45,15 +46,20 @@ export const RegisterSecondColumnStyle = styled.div`
     }
 
     .register-second form div input {
-        height: 35px;
+        height: 30px;
         border-radius: 10px;
         border: solid 1.5px;
         border-color: #F1F1F1;
         margin-top: 7px;
-        margin-bottom: 15px;
+        margin-bottom: 3px;
         padding-left: 7px;
         background-color: #F1F1F1;
         color: #808080;
+    }
+
+    .register-second form div p {
+        font-size: 11px;
+        color: red;
     }
 
     .register-second form button {

@@ -40,6 +40,7 @@ export const LoginFirstColumnStyle = styled.div`
         width: 100%;
         display: flex;
         flex-direction: column;
+        margin-bottom: 20px;
     }
 
     .login-first form div label {
@@ -52,14 +53,19 @@ export const LoginFirstColumnStyle = styled.div`
         border: solid 1.5px;
         border-color: #F1F1F1;
         margin-top: 7px;
-        margin-bottom: 15px;
         padding-left: 7px;
         background-color: #F1F1F1;
         color: #808080;
     }
 
+    .login-first form div p {
+        font-size: 12px;
+        color: red;
+        margin-top: 5px;
+    }
+
     .login-first form button {
-        margin-top: 15px;
+        margin-top: 20px;
         width: 130px;
         height: 40px;
         background-color: #027FE9;
