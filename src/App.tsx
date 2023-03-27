@@ -1,10 +1,10 @@
-import Access from "./pages/access"
+import RoutesMain from "./routes"
 
 function App() {
 
   return (
     <div className="App">
-      <Access/>
+      <RoutesMain/>
     </div>
   )
 }
