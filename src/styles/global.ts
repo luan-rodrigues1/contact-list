@@ -61,6 +61,22 @@ body {
 	font-family: 'Inter', sans-serif;
 }
 
+.loading {
+  animation: spin 1s infinite;
+  display: flex;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #027FE9;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
 `;
 
 export const fadeIn = keyframes`
@@ -69,14 +85,5 @@ export const fadeIn = keyframes`
   }
   to {
     opacity: 1;
-  }
-`;
-
-export const spin = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
   }
 `;
