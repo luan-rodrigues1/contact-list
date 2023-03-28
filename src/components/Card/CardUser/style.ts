@@ -41,6 +41,13 @@ export const CardUserStyle = styled.aside`
         position: absolute;
         top: 8%;
         right: 5%;
+        cursor: pointer;
+        transition: 0.4s;
+    }
+
+    .card-user .card-user-edit:hover {
+        width: 30px;
+        height: 30px;
     }
 
     .card-user-info {

@@ -84,6 +84,15 @@ export const CardContactsStyle = styled.ul`
         position: absolute;
         top: 10%;
         right: 6%;
+        border-bottom: solid 1.5px transparent;
+        transition: 0.6s;
+        cursor: pointer;
+    }
+
+    .edit-button:hover {
+        width: 25px;
+        height: 25px;
+        transition: 0.6s;
     }
 
     .no-contacts {

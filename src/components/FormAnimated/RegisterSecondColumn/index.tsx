@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { AccessContext } from "../../../contexts/AccessContext";
 
 const RegisterSecondColumn = () => {
-    const {registerUser} = useContext(AccessContext)
+    const {registerUser, buttonLoading} = useContext(AccessContext)
 
     const {register, handleSubmit, formState: { errors }} = useForm<IRegisterUser>({
         resolver: yupResolver(formRegistrationSchema),
@@ -44,7 +44,11 @@ const RegisterSecondColumn = () => {
                         <input type="password" placeholder="Digite sua senha novamente" id="confirm_password" {...register("confirm_password")}/>
                         <p>{errors.confirm_password?.message}</p>
                     </div>
-                    <button type="submit">Cadastrar</button>  
+                    {buttonLoading ?
+                        <button type="submit" className="button-form-register">Cadastrar</button>   
+                    :
+                        <button type="submit" className="button-loading" disabled><span className="loading"/></button>
+                    }
                 </form>
             </div>
         </RegisterSecondColumnStyle>

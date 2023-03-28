@@ -21,7 +21,7 @@ export const LoginFirstColumnStyle = styled.div`
         color: #027FE9;
     }
 
-    .login-first span {
+    .login-first .instruction {
         width: 250px;
         text-align: center;
         margin-top: 30px;
@@ -64,7 +64,7 @@ export const LoginFirstColumnStyle = styled.div`
         margin-top: 5px;
     }
 
-    .login-first form button {
+    .login-first form .button-form-login {
         margin-top: 20px;
         width: 130px;
         height: 40px;
@@ -77,9 +77,20 @@ export const LoginFirstColumnStyle = styled.div`
         transition: 0.6s;
     }
 
-    .login-first form button:hover {
+    .login-first form .button-form-login:hover {
         background-color: #0261B5;
         transition: 0.6s;
+    }
+
+    .button-loading {
+        margin-top: 20px;
+        width: 130px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #0261B5;
+        border-radius: 30px;
     }
 
     @media screen and (max-width: 1024px) {
