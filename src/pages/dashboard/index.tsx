@@ -1,4 +1,5 @@
 import { useContext, useState } from "react"
+import CardMain from "../../components/Card/CardMain"
 import CardUser from "../../components/Card/CardUser"
 import ListCardContacts from "../../components/Card/ListCardContacts"
 import Header from "../../components/Header"
@@ -14,8 +15,7 @@ const Dashboard =  () => {
             ): 
                 <> 
                     <Header/>
-                    <CardUser />
-                    <ListCardContacts />
+                    <CardMain />
                 </>
             }
         </>

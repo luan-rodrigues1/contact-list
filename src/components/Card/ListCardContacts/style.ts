@@ -13,7 +13,7 @@ export const ListCardContactsStyle = styled.section`
     }
 
     .header-list h2 {
-        font-size: 16px;
+        font-size: 24px;
         color: #027FE9;
     }
 
@@ -26,6 +26,13 @@ export const ListCardContactsStyle = styled.section`
         color: #ffffff;
         font-size: 24px;
         font-weight: bold;
+    }
+
+    @media (min-width: 768px) {
+        .header-list {
+            width: 100%;
+            margin: 45px 0 10px 0;
+        }
     }
 
     

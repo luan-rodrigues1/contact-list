@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { spin } from "../../../styles/global";
 
 export const LoginFirstColumnStyle = styled.div`
     width: 55%;

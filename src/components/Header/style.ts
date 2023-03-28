@@ -30,4 +30,18 @@ export const HeaderStyle = styled.header`
         font-size: 14px;
         font-weight: bold;
     }
+
+    @media (min-width: 768px) {
+        nav {
+            width: 80%;
+            margin: 0 auto;
+        }
+    }
+
+    @media (min-width: 1460px) {
+        nav {
+            width: 75%;
+            margin: 0 auto;
+        }
+    }
 `;

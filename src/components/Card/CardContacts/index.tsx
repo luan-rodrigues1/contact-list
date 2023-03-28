@@ -21,7 +21,7 @@ const CardContacts = () => {
                         <li key={contact.id}>
                             <div className="container-card">    
                                 <div>
-                                    <img className="card-contact-photo" src={noPhoto} alt="contact photo" />
+                                    <img className={infoUser?.profile_picture !== null ? "photo-exist-contact" : "card-contact-photo"} src={infoUser?.profile_picture !== null ? infoUser.profile_picture : noPhoto} alt="contact photo" />
                                     <div>
                                         <h2>{contact.name}</h2>
                                         <span>{contact.description}</span>
