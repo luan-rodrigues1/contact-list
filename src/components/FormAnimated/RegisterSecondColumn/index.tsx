@@ -12,6 +12,7 @@ const RegisterSecondColumn = () => {
     const {register, handleSubmit, formState: { errors }} = useForm<IRegisterUser>({
         resolver: yupResolver(formRegistrationSchema),
     });
+    
 
     return (
         <RegisterSecondColumnStyle>
@@ -56,3 +57,4 @@ const RegisterSecondColumn = () => {
 }
 
 export default RegisterSecondColumn
+
