@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           <GlobalStyle/>
           <App />
           <ToastContainer
-            autoClose={1700}
+            autoClose={2000}
           />
         </ContactProvider>
       </AccessProvider>

@@ -7,7 +7,7 @@ import { formLoginSchema } from "../../../schemas/user.schemas";
 import { LoginFirstColumnStyle } from "./style"
 
 const LoginFirstColumn = () => {
-    const {loginUser} = useContext(AccessContext)
+    const {loginUser, buttonLoading} = useContext(AccessContext)
 
     const {register, handleSubmit, formState: { errors }} = useForm<ILoginUser>({
         resolver: yupResolver(formLoginSchema),
@@ -17,7 +17,7 @@ const LoginFirstColumn = () => {
         <LoginFirstColumnStyle>
             <div className="login-first">
                 <h2>Login</h2>
-                <span>Preencha os campos abaixo para para acessar sua conta</span>
+                <span className="instruction">Preencha os campos abaixo para para acessar sua conta</span>
                 <form onSubmit={handleSubmit(loginUser)}>
                     <div>
                         <label htmlFor="email-login">E-mail</label>
@@ -29,7 +29,11 @@ const LoginFirstColumn = () => {
                         <input type="password" placeholder="Digite sua senha" id="password-login" {...register("password")}/>
                         <p>{errors.password?.message}</p>
                     </div>
-                    <button type="submit">Entrar</button>
+                    {buttonLoading ? 
+                        <button type="submit" className="button-form-login">Entrar</button>
+                        :
+                        <button type="submit" className="button-loading" disabled><span className="loading"/></button>
+                    }
                 </form>
             </div>
         </LoginFirstColumnStyle>

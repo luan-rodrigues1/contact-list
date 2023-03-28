@@ -30,20 +30,20 @@ export const AccessProvider = ({ children }: IAccessProvidersProps) => {
   const [buttonLoading, setButtonLoading] = useState<boolean>(true)
 
   const registerUser = async (data: IRegisterUser) => {
-    setButtonLoading(true)
+    setButtonLoading(false)
     try {
       await registerUserApi(data);
-      setButtonLoading(false)
+      setButtonLoading(true)
       toast.success("Conta criada com sucesso!");
 
     } catch (error) {
       console.error(error)
-      setButtonLoading(false)
+      setButtonLoading(true)
     }
   }
 
   const loginUser = async (data: ILoginUser) => {
-    setButtonLoading(true)
+    setButtonLoading(false)
 
     try {
       const {token} = await loginUserApi(data);
@@ -51,10 +51,10 @@ export const AccessProvider = ({ children }: IAccessProvidersProps) => {
       window.localStorage.setItem("TOKEN", token);
       toast.success("Login realizado com sucesso!");
       navigate("/dashboard")
-      setButtonLoading(false)
+      setButtonLoading(true)
     } catch (error) {
       toast.error("Ops! Algo deu errado");
-      setButtonLoading(false)
+      setButtonLoading(true)
     }
   }
 

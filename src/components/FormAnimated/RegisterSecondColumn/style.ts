@@ -62,7 +62,7 @@ export const RegisterSecondColumnStyle = styled.div`
         color: red;
     }
 
-    .register-second form button {
+    /* .register-second form button {
         margin-top: 5px;
         width: 130px;
         height: 40px;
@@ -78,6 +78,35 @@ export const RegisterSecondColumnStyle = styled.div`
     .register-second form button:hover {
         background-color: #0261B5;
         transition: 0.6s;
+    } */
+
+    .register-second form .button-form-register {
+        margin-top: 5px;
+        width: 130px;
+        height: 40px;
+        background-color: #027FE9;
+        border: 2px solid #ffffff;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 16px;
+        border-radius: 30px;
+        transition: 0.6s;
+    }
+
+    .register-second form .button-form-register:hover {
+        background-color: #0261B5;
+        transition: 0.6s;
+    }
+
+    .button-loading {
+        margin-top: 5px;
+        width: 130px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #0261B5;
+        border-radius: 30px;
     }
 
     @media screen and (max-width: 1024px) {
