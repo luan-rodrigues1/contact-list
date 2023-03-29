@@ -41,3 +41,10 @@ export interface ILoginUser {
 export interface IReturnLoginUser {
     token: string;
 }
+
+export interface IUpdateUser {
+    name?: string;
+    email?: string;
+    cell_phone?: string;
+    password?: string;
+}

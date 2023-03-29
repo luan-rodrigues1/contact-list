@@ -150,7 +150,8 @@ export const ModalUpdateUserStyle = styled.div`
 
     @media (min-width: 768px) {
         max-width: 800px;
-        max-height: 430px;
+        /* max-height: 430px; */
+        max-width: auto;
         top: 33%;
 
         .modal-update {
@@ -158,7 +159,8 @@ export const ModalUpdateUserStyle = styled.div`
         }
         
         .header-modal-update {
-            height: 430px;
+            /* height: 430px; */
+            height: auto;
             width: 40%;
             background-color: #027fe9;
             border-bottom-left-radius: 0;
