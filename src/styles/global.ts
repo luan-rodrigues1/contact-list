@@ -87,3 +87,27 @@ export const fadeIn = keyframes`
     opacity: 1;
   }
 `;
+
+export const openModal = keyframes`
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+`;
+
+export const closeModal = keyframes`
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+`;
