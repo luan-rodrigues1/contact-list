@@ -1,9 +1,11 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { IContact } from "../interfaces/contact.interfaces";
 import { ILoginUser, IRegisterUser } from "../interfaces/user.interfaces";
 import { loginUserApi } from "../services/loginUserApi";
 import { registerUserApi } from "../services/registerUserApi";
+import { ContactContext } from "./ContactContext";
 
 interface IAccessProvidersProps {
   children: ReactNode;

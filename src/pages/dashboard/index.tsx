@@ -1,9 +1,10 @@
 import { useContext, useState } from "react"
 import CardMain from "../../components/Card/CardMain"
-import CardUser from "../../components/Card/CardUser"
-import ListCardContacts from "../../components/Card/ListCardContacts"
 import Header from "../../components/Header"
 import Loading from "../../components/Loading"
+import ModalAdd from "../../components/Modal/ModalAdd"
+import ModalContact from "../../components/Modal/ModalContact"
+import ModalUpdateUser from "../../components/Modal/ModalUpdateUser"
 import { AccessContext } from "../../contexts/AccessContext"
 
 const Dashboard =  () => {
@@ -15,7 +16,10 @@ const Dashboard =  () => {
             ): 
                 <> 
                     <Header/>
-                    <CardMain />
+                    <CardMain/>
+                    <ModalAdd/>
+                    <ModalUpdateUser/>
+                    <ModalContact/>
                 </>
             }
         </>
