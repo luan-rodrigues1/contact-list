@@ -7,21 +7,21 @@ import { useContext } from "react"
 import { ContactContext } from "../../../contexts/ContactContext"
 
 const CardContacts = () => {
-    const {infoUser} = useContext(ContactContext)
+    const { setSelectedUser, listContacts, setModalUpdateContact } = useContext(ContactContext)
     return (
         <>
-            {infoUser?.contacts[0] === undefined ?
+            {listContacts[0] === undefined ?
             <CardContactsStyle>
                 <div className="no-contacts">Nenhuma contato cadastrado</div>
             </CardContactsStyle>
         :
             <CardContactsStyle >
-                {infoUser?.contacts.map(contact => {
+                {listContacts.map(contact => {
                     return (
                         <li key={contact.id}>
                             <div className="container-card">    
                                 <div>
-                                    <img className={infoUser?.profile_picture !== null ? "photo-exist-contact" : "card-contact-photo"} src={infoUser?.profile_picture !== null ? infoUser.profile_picture : noPhoto} alt="contact photo" />
+                                    <img className={contact?.profile_picture !== null ? "photo-exist-contact" : "card-contact-photo"} src={contact?.profile_picture !== null ? contact.profile_picture : noPhoto} alt="contact photo" />
                                     <div>
                                         <h2>{contact.name}</h2>
                                         <span>{contact.description}</span>
@@ -37,7 +37,7 @@ const CardContacts = () => {
                                         <span>{contact.cell_phone}</span>
                                     </div>
                                 </section>
-                                <img className="edit-button" src={editPenWhite} alt="edit button" />
+                                <img onClick={() => {return (setSelectedUser(contact), setModalUpdateContact(false))}} className="edit-button" src={editPenWhite} alt="edit button" />
                             </div>
                         </li>
                     )
