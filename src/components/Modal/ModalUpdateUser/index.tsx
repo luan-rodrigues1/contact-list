@@ -9,14 +9,14 @@ import { formUpdateSchema } from "../../../schemas/user.schemas";
 
 const ModalUpdateUser = () => {
 
-    const {UpdateUser} = useContext(ContactContext)
+    const {UpdateUser, modalUpdateUser, setModalUpdateUser, deleteUser} = useContext(ContactContext)
 
     const {register, handleSubmit, formState: { errors }} = useForm<IUpdateUser>({
         resolver: yupResolver(formUpdateSchema),
     });
 
     return (
-        <ModalUpdateUserStyle hidden={false}>
+        <ModalUpdateUserStyle hidden={modalUpdateUser}>
             <div className="modal-update">
                 <div className="header-modal-update">
                     <div>
@@ -25,7 +25,7 @@ const ModalUpdateUser = () => {
                     </div>
                 </div>
                 <form className="form-modal-update" onSubmit={handleSubmit(UpdateUser)}>
-                    <h2>Suas Informações</h2>
+                    <h2>atualizar Informações</h2>
                     <div>
                         <label htmlFor="name-update">Nome</label>
                         <input type="text"placeholder="Digite o nome aqui" id="name-update" {...register("name")}/>
@@ -48,10 +48,10 @@ const ModalUpdateUser = () => {
                     </div>
                     <div className="form-button">
                         <button type="submit" className="form-button-update">Atualizar conta</button>
-                        <button type="button" className="form-button-delete">Excluir conta</button>
+                        <button onClick={() => deleteUser()} type="button" className="form-button-delete">Excluir conta</button>
                     </div>
                 </form>
-                <span className="close-modal-update">X</span>
+                <span onClick={() => setModalUpdateUser(true)} className="close-modal-update">X</span>
             </div>
         </ModalUpdateUserStyle>
     )

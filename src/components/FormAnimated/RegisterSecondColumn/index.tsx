@@ -3,15 +3,22 @@ import { useForm } from "react-hook-form";
 import { formRegistrationSchema } from "../../../schemas/user.schemas";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IRegisterUser } from "../../../interfaces/user.interfaces";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { AccessContext } from "../../../contexts/AccessContext";
 
 const RegisterSecondColumn = () => {
+    const formRefRegister = useRef<HTMLFormElement>(null);
     const {registerUser, buttonLoading} = useContext(AccessContext)
 
     const {register, handleSubmit, formState: { errors }} = useForm<IRegisterUser>({
         resolver: yupResolver(formRegistrationSchema),
     });
+
+    const onSubmit = async (data: IRegisterUser) => {
+        await registerUser(data);
+
+        formRefRegister.current?.reset();
+    };
     
 
     return (
@@ -19,7 +26,7 @@ const RegisterSecondColumn = () => {
             <div className="register-second">
                 <h2>Crie sua conta</h2>
                 <span>Preencha os campos abaixo para se cadastrar</span>
-                <form onSubmit={handleSubmit(registerUser)}>
+                <form onSubmit={handleSubmit(onSubmit)} ref={formRefRegister}>
                     <div>
                         <label htmlFor="name">Nome</label>
                         <input type="text" placeholder="Digite seu nome" id="name" {...register("name")}/>

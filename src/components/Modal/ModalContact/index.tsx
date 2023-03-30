@@ -8,18 +8,25 @@ import { ModalUpdateContactStyle } from "./style"
 
 const ModalContact = () => {
 
-    const {UpdateContact} = useContext(ContactContext)
+    const {UpdateContact, modalUpdateContact, setModalUpdateContact, deleteContact, selectedUser} = useContext(ContactContext)
 
     const {register, handleSubmit, formState: { errors }} = useForm<IUpdateContact>({
         resolver: yupResolver(formContactSchema),
     });
 
+    // const defaultValues = {
+    //     name: selectedUser?.name || '',
+    //     email: selectedUser?.email || '',
+    //     cell_phone: selectedUser?.cell_phone || '',
+    //     description: selectedUser?.description || '',
+    // };
+
     return (
-        <ModalUpdateContactStyle hidden={true}>
+        <ModalUpdateContactStyle hidden={modalUpdateContact}>
             <div className="header-modal-contact">
                 <div>
-                    <h2>INFORMAÇÕES DO CONTATO</h2>
-                    <span>X</span>
+                    <h2>ATUALIZAR CONTATO</h2>
+                    <span onClick={() => setModalUpdateContact(true)}>X</span>
                 </div>
             </div>
             <form className="from-modal-contact" onSubmit={handleSubmit(UpdateContact)}>
@@ -45,7 +52,7 @@ const ModalContact = () => {
                 </div>
                 <div className="form-contact-button">
                     <button className="button-contact-update" type="submit">Atualizar Contato</button>
-                    <button className="button-contact-delete" type="button">Deletar Contato</button>
+                    <button onClick={() => deleteContact()} className="button-contact-delete" type="button">Deletar Contato</button>
                 </div>
             </form>
         </ModalUpdateContactStyle>

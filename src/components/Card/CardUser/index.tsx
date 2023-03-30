@@ -8,7 +8,7 @@ import { ContactContext } from "../../../contexts/ContactContext"
 
 const CardUser = () => {
 
-    const {infoUser} = useContext(ContactContext)
+    const {infoUser, setModalUpdateUser} = useContext(ContactContext)
 
     return (
         <CardUserStyle>
@@ -18,7 +18,7 @@ const CardUser = () => {
                     <h3>Bem-vindo(a)</h3>
                     <p>{infoUser?.name}</p>
                 </div>
-                <img className="card-user-edit" src={editpen} alt="edit button" />
+                <img onClick={() => setModalUpdateUser(false)} className="card-user-edit" src={editpen} alt="edit button" />
                 <section className="card-user-info">
                     <div>
                         <img src={cellIcon} alt="cell-phone icon" />
