@@ -9,7 +9,7 @@ import { formUpdateSchema } from "../../../schemas/user.schemas";
 
 const ModalUpdateUser = () => {
 
-    const {UpdateUser, modalUpdateUser, setModalUpdateUser, deleteUser} = useContext(ContactContext)
+    const {UpdateUser, modalUpdateUser, setModalUpdateUser, deleteUser, confirmLoadingButton, deleteLoadingButton} = useContext(ContactContext)
 
     const {register, handleSubmit, formState: { errors }} = useForm<IUpdateUser>({
         resolver: yupResolver(formUpdateSchema),
@@ -47,8 +47,16 @@ const ModalUpdateUser = () => {
                         <p className="erro-update">{errors.password?.message}</p>
                     </div>
                     <div className="form-button">
-                        <button type="submit" className="form-button-update">Atualizar conta</button>
-                        <button onClick={() => deleteUser()} type="button" className="form-button-delete">Excluir conta</button>
+                        {confirmLoadingButton ?
+                            <button type="submit" className="form-button-update-loading" disabled><span className="loading"/></button>
+                            :
+                            <button type="submit" className="form-button-update">Atualizar conta</button>
+                        }
+                        {deleteLoadingButton ?
+                            <button onClick={() => deleteUser()} type="button" className="form-button-delete-loading" disabled><span className="loading"/></button>
+                            :
+                            <button onClick={() => deleteUser()} type="button" className="form-button-delete">Excluir conta</button>
+                        }
                     </div>
                 </form>
                 <span onClick={() => setModalUpdateUser(true)} className="close-modal-update">X</span>

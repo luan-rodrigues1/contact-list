@@ -148,6 +148,34 @@ export const ModalUpdateUserStyle = styled.div`
         color: #F3F3F3;
     }
 
+    .form-button-update-loading {
+        height: 35px;
+        background-color: #0261B5;
+        border: #0261B5 solid 1.5px;
+        border-radius: 6px;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 15px;
+        transition: 0.6s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-button-delete-loading {
+        height: 35px;
+        background-color: red;
+        border: red solid 1.5px;
+        border-radius: 6px;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 15px;
+        transition: 0.6s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     @media (min-width: 768px) {
         max-width: 800px;
         /* max-height: 430px; */
@@ -226,6 +254,36 @@ export const ModalUpdateUserStyle = styled.div`
             font-size: 18px;
             border-bottom: 1px solid #0261B5;
             color: #0261B5;
+        }
+
+        .form-button-update-loading {
+            height: 40px;
+            width: 130px;
+            background-color: #0261B5;
+            border: #0261B5 solid 1.5px;
+            border-radius: 6px;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 15px;
+            transition: 0.6s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-button-delete-loading {
+            height: 40px;
+            width: 130px;
+            background-color: red;
+            border: red solid 1.5px;
+            border-radius: 6px;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 15px;
+            transition: 0.6s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
     }

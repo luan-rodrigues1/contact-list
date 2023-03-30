@@ -9,7 +9,7 @@ import { ModalAddStyle } from "./style"
 const ModalAdd = () => {
     const formRef = useRef<HTMLFormElement>(null);
 
-    const { CreateContact, modaladd, setModaladd } = useContext(ContactContext);
+    const { CreateContact, modaladd, setModaladd, confirmLoadingButton } = useContext(ContactContext);
 
     const {
         register,
@@ -55,9 +55,11 @@ const ModalAdd = () => {
                     <input type="text" placeholder="Digite a descrição aqui" id="description-add" {...register("description")} />
                     <p className="erro-add">{errors.description?.message}</p>
                 </div>
-                <button className="button-add" type="submit">
-                    Adicionar Contato
-                </button>
+                {confirmLoadingButton ? 
+                    <button className="button-add-loading" type="submit" disabled><span className="loading"/></button>
+                    :
+                    <button className="button-add" type="submit">Adicionar Contato</button>
+                }
             </form>
         </ModalAddStyle>
     );

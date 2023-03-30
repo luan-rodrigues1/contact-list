@@ -8,7 +8,7 @@ import { ModalUpdateContactStyle } from "./style"
 
 const ModalContact = () => {
 
-    const {UpdateContact, modalUpdateContact, setModalUpdateContact, deleteContact, selectedUser} = useContext(ContactContext)
+    const {UpdateContact, modalUpdateContact, setModalUpdateContact, deleteContact, selectedUser, confirmLoadingButton, deleteLoadingButton} = useContext(ContactContext)
 
     const {register, handleSubmit, formState: { errors }} = useForm<IUpdateContact>({
         resolver: yupResolver(formContactSchema),
@@ -51,8 +51,16 @@ const ModalContact = () => {
                     <p className="erro-contact">{errors.description?.message}</p>
                 </div>
                 <div className="form-contact-button">
-                    <button className="button-contact-update" type="submit">Atualizar Contato</button>
-                    <button onClick={() => deleteContact()} className="button-contact-delete" type="button">Deletar Contato</button>
+                    {confirmLoadingButton ? 
+                        <button className="button-contact-update-loading" type="submit" disabled><span className="loading"/></button>
+                        :
+                        <button className="button-contact-update" type="submit">Atualizar Contato</button>
+                    }
+                    {deleteLoadingButton ?
+                        <button onClick={() => deleteContact()} className="button-contact-delete-loading" type="button" disabled><span className="loading"/></button>
+                        :
+                        <button onClick={() => deleteContact()} className="button-contact-delete" type="button">Deletar Contato</button>
+                    }
                 </div>
             </form>
         </ModalUpdateContactStyle>

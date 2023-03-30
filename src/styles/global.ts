@@ -66,7 +66,7 @@ body {
   display: flex;
   width: 15px;
   height: 15px;
-  border: 2px solid #027FE9;
+  border: 2px solid transparent;
   border-top-color: #ffffff;
   border-radius: 50%;
 }
