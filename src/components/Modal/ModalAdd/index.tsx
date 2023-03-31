@@ -20,8 +20,8 @@ const ModalAdd = () => {
         resolver: yupResolver(formContactSchema),
     });
 
-    const onSubmit = (data: ICreateContact) => {
-        CreateContact(data);
+    const onSubmit = async (data: ICreateContact) => {
+        await CreateContact(data);
 
         formRef.current?.reset();
     };
@@ -31,7 +31,7 @@ const ModalAdd = () => {
             <div className="header-modal-add">
                 <div>
                     <h2>ADICIONAR CONTATO</h2>
-                    <span onClick={() => setModaladd(true)}>X</span>
+                    <span onClick={() => (setModaladd(true), formRef.current?.reset())}>X</span>
                 </div>
             </div>
             <form className="from-modal-add" onSubmit={handleSubmit(onSubmit)} ref={formRef}>

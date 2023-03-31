@@ -12,7 +12,7 @@ const ModalContact = () => {
 
     const {UpdateContact, modalUpdateContact, setModalUpdateContact, deleteContact, selectedUser, confirmLoadingButton, deleteLoadingButton} = useContext(ContactContext)
 
-    const {register, handleSubmit, formState: { errors }} = useForm<IUpdateContact>({
+    const {register, handleSubmit, formState: { errors }, reset} = useForm<IUpdateContact>({
         resolver: yupResolver(formContactSchema),
     });
 
@@ -23,6 +23,12 @@ const ModalContact = () => {
         description: selectedUser?.description || '',
     };
 
+    const onSubmit = async (data: IUpdateContact) => {
+        await UpdateContact(data);
+
+        formRefContact.current?.reset();
+    };
+
     return (
         <ModalUpdateContactStyle hidden={modalUpdateContact}>
             <div className="header-modal-contact">
@@ -31,7 +37,7 @@ const ModalContact = () => {
                     <span onClick={() => (setModalUpdateContact(true), formRefContact.current?.reset())}>X</span>
                 </div>
             </div>
-            <form className="from-modal-contact" onSubmit={handleSubmit(UpdateContact)}>
+            <form className="from-modal-contact" onSubmit={handleSubmit(onSubmit)} ref={formRefContact}>
                 <div>
                     <label htmlFor="name-contact">Nome</label>
                     <input type="text"placeholder="Digite o nome aqui" id="name-contact" {...register("name")}/>
