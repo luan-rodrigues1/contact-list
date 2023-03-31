@@ -81,6 +81,22 @@ export const ModalUpdateUserStyle = styled.div`
         color: #027FE9;
     }
 
+    .form-modal-update div .input-password-modal{
+        width: 100%;
+        margin: 0px;
+        position: relative;
+    }
+
+    .form-modal-update div .input-password-modal img{
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 35%;
+        right: 0%;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
     .form-modal-update div input {
         height: 30px;
         border-radius: 8px;
@@ -178,7 +194,6 @@ export const ModalUpdateUserStyle = styled.div`
 
     @media (min-width: 768px) {
         max-width: 800px;
-        /* max-height: 430px; */
         max-width: auto;
         top: 33%;
 
@@ -187,7 +202,6 @@ export const ModalUpdateUserStyle = styled.div`
         }
         
         .header-modal-update {
-            /* height: 430px; */
             height: auto;
             width: 40%;
             background-color: #027fe9;

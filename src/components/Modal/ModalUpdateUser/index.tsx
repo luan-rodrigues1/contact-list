@@ -3,12 +3,14 @@ import noPhoto from "../../../assets/nophoto.png"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { ContactContext } from "../../../contexts/ContactContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { IUpdateUser } from "../../../interfaces/user.interfaces";
 import { formUpdateSchema } from "../../../schemas/user.schemas";
+import openEye from "../../../assets/visibilityopen.png"
+import openClose from "../../../assets/visibilityclose.png"
 
 const ModalUpdateUser = () => {
-
+    const [visibilityPassword, setVisibilityPassword] = useState<boolean>(false)
     const {UpdateUser, modalUpdateUser, setModalUpdateUser, deleteUser, confirmLoadingButton, deleteLoadingButton} = useContext(ContactContext)
 
     const {register, handleSubmit, formState: { errors }} = useForm<IUpdateUser>({
@@ -43,7 +45,10 @@ const ModalUpdateUser = () => {
                     </div>
                     <div>
                         <label htmlFor="password-update">Password</label>
-                        <input type="password"placeholder="Digite o Telefone aqui" id="password-update" {...register("password")}/>
+                        <div className="input-password-modal">
+                            <input type={visibilityPassword ? "text" : "password"} placeholder="Digite o Telefone aqui" id="password-update" {...register("password")}/>
+                            <img onClick={() => setVisibilityPassword(visibilityPassword ? false : true)} src={visibilityPassword ? openEye : openClose} alt="button password visibility" />
+                        </div>
                         <p className="erro-update">{errors.password?.message}</p>
                     </div>
                     <div className="form-button">

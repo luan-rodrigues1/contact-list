@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { ContactContext } from "../../../contexts/ContactContext";
 import { IUpdateContact } from "../../../interfaces/contact.interfaces";
@@ -8,25 +8,27 @@ import { ModalUpdateContactStyle } from "./style"
 
 const ModalContact = () => {
 
+    const formRefContact = useRef<HTMLFormElement>(null);
+
     const {UpdateContact, modalUpdateContact, setModalUpdateContact, deleteContact, selectedUser, confirmLoadingButton, deleteLoadingButton} = useContext(ContactContext)
 
     const {register, handleSubmit, formState: { errors }} = useForm<IUpdateContact>({
         resolver: yupResolver(formContactSchema),
     });
 
-    // const defaultValues = {
-    //     name: selectedUser?.name || '',
-    //     email: selectedUser?.email || '',
-    //     cell_phone: selectedUser?.cell_phone || '',
-    //     description: selectedUser?.description || '',
-    // };
+    const defaultValues = {
+        name: selectedUser?.name || '',
+        email: selectedUser?.email || '',
+        cell_phone: selectedUser?.cell_phone || '',
+        description: selectedUser?.description || '',
+    };
 
     return (
         <ModalUpdateContactStyle hidden={modalUpdateContact}>
             <div className="header-modal-contact">
                 <div>
                     <h2>ATUALIZAR CONTATO</h2>
-                    <span onClick={() => setModalUpdateContact(true)}>X</span>
+                    <span onClick={() => (setModalUpdateContact(true), formRefContact.current?.reset())}>X</span>
                 </div>
             </div>
             <form className="from-modal-contact" onSubmit={handleSubmit(UpdateContact)}>

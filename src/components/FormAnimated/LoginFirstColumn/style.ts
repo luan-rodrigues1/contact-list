@@ -47,6 +47,21 @@ export const LoginFirstColumnStyle = styled.div`
         color: #A9A9A9;
     }
 
+    .login-first form div .input-password-login {
+        margin-bottom: 0px;
+        position: relative;
+    }
+
+    .login-first form div .input-password-login img{
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 39%;
+        right: 0%;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
     .login-first form div input {
         height: 35px;
         border-radius: 10px;
@@ -86,11 +101,15 @@ export const LoginFirstColumnStyle = styled.div`
         margin-top: 20px;
         width: 130px;
         height: 40px;
+        background-color: #0261B5;
+        border: 2px solid #ffffff;
+        font-weight: bold;
+        font-size: 16px;
+        border-radius: 30px;
+        transition: 0.6s;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #0261B5;
-        border-radius: 30px;
     }
 
     @media screen and (max-width: 1024px) {
