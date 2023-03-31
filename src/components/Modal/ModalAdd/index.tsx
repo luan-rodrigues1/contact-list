@@ -9,7 +9,7 @@ import { ModalAddStyle } from "./style"
 const ModalAdd = () => {
     const formRef = useRef<HTMLFormElement>(null);
 
-    const { CreateContact, modaladd, setModaladd } = useContext(ContactContext);
+    const { CreateContact, modaladd, setModaladd, confirmLoadingButton } = useContext(ContactContext);
 
     const {
         register,
@@ -20,8 +20,8 @@ const ModalAdd = () => {
         resolver: yupResolver(formContactSchema),
     });
 
-    const onSubmit = (data: ICreateContact) => {
-        CreateContact(data);
+    const onSubmit = async (data: ICreateContact) => {
+        await CreateContact(data);
 
         formRef.current?.reset();
     };
@@ -31,7 +31,7 @@ const ModalAdd = () => {
             <div className="header-modal-add">
                 <div>
                     <h2>ADICIONAR CONTATO</h2>
-                    <span onClick={() => setModaladd(true)}>X</span>
+                    <span onClick={() => (setModaladd(true), formRef.current?.reset())}>X</span>
                 </div>
             </div>
             <form className="from-modal-add" onSubmit={handleSubmit(onSubmit)} ref={formRef}>
@@ -55,9 +55,11 @@ const ModalAdd = () => {
                     <input type="text" placeholder="Digite a descrição aqui" id="description-add" {...register("description")} />
                     <p className="erro-add">{errors.description?.message}</p>
                 </div>
-                <button className="button-add" type="submit">
-                    Adicionar Contato
-                </button>
+                {confirmLoadingButton ? 
+                    <button className="button-add-loading" type="submit" disabled><span className="loading"/></button>
+                    :
+                    <button className="button-add" type="submit">Adicionar Contato</button>
+                }
             </form>
         </ModalAddStyle>
     );

@@ -28,6 +28,7 @@ export const RegisterFirstColumnStyle = styled.div`
   .register-first div {
     text-align: center;
     line-height: 20px;
+    width: 95%;
   }
 
   .register-first button {
@@ -52,6 +53,10 @@ export const RegisterFirstColumnStyle = styled.div`
 
   @media screen and (max-width: 1024px) {
     margin-bottom: 0px;
+
+    .register-first div {
+      width: auto;
+    }
   }
 
 `;
