@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { closeModal, openModal } from "../../../styles/global";
+import { openModal } from "../../../styles/global";
 
 
 export const ModalAddStyle = styled.div`
@@ -15,10 +15,6 @@ export const ModalAddStyle = styled.div`
     max-width: 500px;
     opacity: 0;
     animation: ${openModal} 0.8s forwards;
-
-    &.hide {
-        animation: ${closeModal} 0.8s forwards;
-    }
 
 
 
@@ -113,6 +109,22 @@ export const ModalAddStyle = styled.div`
         transition: 0.6s;
     }
 
+    .button-add-loading {
+        height: 40px;
+        width: 100%;
+        margin-top: 5px;
+        background-color: #0261B5;
+        border: solid 1px #0261B5;
+        border-radius: 6px;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: bold;
+        transition: 0.6s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     @media (min-width: 768px) {
 
         top: 35%;
@@ -121,6 +133,15 @@ export const ModalAddStyle = styled.div`
             height: 40px;
             width: 170px;
             font-size: 15px;
+        }
+
+        .button-add-loading {
+            height: 40px;
+            width: 170px;
+            font-size: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 

@@ -81,6 +81,22 @@ export const ModalUpdateUserStyle = styled.div`
         color: #027FE9;
     }
 
+    .form-modal-update div .input-password-modal{
+        width: 100%;
+        margin: 0px;
+        position: relative;
+    }
+
+    .form-modal-update div .input-password-modal img{
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 35%;
+        right: 0%;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
     .form-modal-update div input {
         height: 30px;
         border-radius: 8px;
@@ -148,9 +164,36 @@ export const ModalUpdateUserStyle = styled.div`
         color: #F3F3F3;
     }
 
+    .form-button-update-loading {
+        height: 35px;
+        background-color: #0261B5;
+        border: #0261B5 solid 1.5px;
+        border-radius: 6px;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 15px;
+        transition: 0.6s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-button-delete-loading {
+        height: 35px;
+        background-color: red;
+        border: red solid 1.5px;
+        border-radius: 6px;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 15px;
+        transition: 0.6s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     @media (min-width: 768px) {
         max-width: 800px;
-        /* max-height: 430px; */
         max-width: auto;
         top: 33%;
 
@@ -159,7 +202,6 @@ export const ModalUpdateUserStyle = styled.div`
         }
         
         .header-modal-update {
-            /* height: 430px; */
             height: auto;
             width: 40%;
             background-color: #027fe9;
@@ -226,6 +268,36 @@ export const ModalUpdateUserStyle = styled.div`
             font-size: 18px;
             border-bottom: 1px solid #0261B5;
             color: #0261B5;
+        }
+
+        .form-button-update-loading {
+            height: 40px;
+            width: 130px;
+            background-color: #0261B5;
+            border: #0261B5 solid 1.5px;
+            border-radius: 6px;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 15px;
+            transition: 0.6s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-button-delete-loading {
+            height: 40px;
+            width: 130px;
+            background-color: red;
+            border: red solid 1.5px;
+            border-radius: 6px;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 15px;
+            transition: 0.6s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
     }

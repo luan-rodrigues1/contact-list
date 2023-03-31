@@ -28,6 +28,10 @@ export interface IContactContext {
   setModalUpdateUser: React.Dispatch<React.SetStateAction<boolean>>
   modaladd: boolean
   setModaladd: React.Dispatch<React.SetStateAction<boolean>>
+  confirmLoadingButton: boolean
+  setConfirmLoadingButton: React.Dispatch<React.SetStateAction<boolean>>
+  deleteLoadingButton: boolean
+  setDeleteLoadingButton: React.Dispatch<React.SetStateAction<boolean>>
   CreateContact: (data: ICreateContact) => Promise<void>
   UpdateContact: (data: IUpdateContact) => Promise<void>
   deleteContact: () => Promise<void>
@@ -49,6 +53,8 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
   const [modaladd, setModaladd] = useState<boolean>(true)
   const [modalUpdateContact, setModalUpdateContact] = useState<boolean>(true)
   const [modalUpdateUser, setModalUpdateUser] = useState<boolean>(true)
+  const [confirmLoadingButton, setConfirmLoadingButton] = useState<boolean>(false)
+  const [deleteLoadingButton, setDeleteLoadingButton] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -101,6 +107,7 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
   }
 
   const CreateContact = async (data: ICreateContact) => {
+    setConfirmLoadingButton(true)
 
     try {
       await createContactApi(data)
@@ -108,15 +115,18 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
       setListContacts(list)
       toast.success("Contato cadastrado com sucesso!")
       setModaladd(true)
+      setConfirmLoadingButton(false)
 
     } catch (erro) {
       toast.error("Ops! Algo deu errado")
+      setConfirmLoadingButton(false)
 
     }
 
   }
 
   const UpdateContact = async (data: IUpdateContact) => {
+    setConfirmLoadingButton(true)
 
     try {
       await updateContactApi(data, selectedUser?.id!)
@@ -124,23 +134,28 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
       setListContacts(list)
       toast.success("Contato atualizado com sucesso!")
       setModalUpdateContact(true)
+      setConfirmLoadingButton(false)
 
     } catch {
       toast.error("Ops! Algo deu errado")
+      setConfirmLoadingButton(false)
     }
 
   }
 
   const deleteContact = async () => {
+    setDeleteLoadingButton(true)
     try {
       await deleteContactApi(selectedUser?.id!)
       const list = await listContactsApi()
       setListContacts(list)
       toast.success("Contato deletado com sucesso!")
       setModalUpdateContact(true)
+      setDeleteLoadingButton(false)
 
     } catch {
       toast.error("Ops! Algo deu errado")
+      setDeleteLoadingButton(false)
     }
   }
 
@@ -162,7 +177,11 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
         modaladd,
         setModaladd,
         deleteContact,
-        deleteUser
+        deleteUser,
+        confirmLoadingButton, 
+        setConfirmLoadingButton,
+        deleteLoadingButton, 
+        setDeleteLoadingButton
     }}>
       {children}
     </ContactContext.Provider>

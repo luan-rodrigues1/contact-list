@@ -117,6 +117,34 @@ export const ModalUpdateContactStyle = styled.div`
         transition: 0.6s;
     }
 
+    .button-contact-update-loading {
+        height: 35px;
+        background-color: #0261B5;
+        border: #0261B5 solid 1.5px;
+        border-radius: 6px;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 15px;
+        transition: 0.6s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .button-contact-delete-loading {
+        height: 35px;
+        background-color: red;
+        border: red solid 1.5px;
+        border-radius: 6px;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 15px;
+        transition: 0.6s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     @media (min-width: 768px) {
 
         top: 35%;
@@ -141,6 +169,33 @@ export const ModalUpdateContactStyle = styled.div`
         }
 
         .from-modal-contact .form-contact-button .button-contact-delete {
+            height: 40px;
+            width: 170px;
+            background-color: red;
+            border: red solid 1.5px;
+            border-radius: 6px;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 15px;
+            transition: 0.6s;
+        }
+
+        .button-contact-update-loading {
+            height: 40px;
+            width: 170px;
+            background-color: #0261B5;
+            border: #0261B5 solid 1.5px;
+            border-radius: 6px;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 15px;
+            transition: 0.6s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button-contact-delete-loading {
             height: 40px;
             width: 170px;
             background-color: red;
