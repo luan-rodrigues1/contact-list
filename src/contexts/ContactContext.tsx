@@ -32,6 +32,8 @@ export interface IContactContext {
   setConfirmLoadingButton: React.Dispatch<React.SetStateAction<boolean>>
   deleteLoadingButton: boolean
   setDeleteLoadingButton: React.Dispatch<React.SetStateAction<boolean>>
+  modalHeader: boolean
+  setModalHeader: React.Dispatch<React.SetStateAction<boolean>>
   CreateContact: (data: ICreateContact) => Promise<void>
   UpdateContact: (data: IUpdateContact) => Promise<void>
   deleteContact: () => Promise<void>
@@ -55,6 +57,7 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
   const [modalUpdateUser, setModalUpdateUser] = useState<boolean>(true)
   const [confirmLoadingButton, setConfirmLoadingButton] = useState<boolean>(false)
   const [deleteLoadingButton, setDeleteLoadingButton] = useState<boolean>(false)
+  const [modalHeader, setModalHeader] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -181,7 +184,9 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
         confirmLoadingButton, 
         setConfirmLoadingButton,
         deleteLoadingButton, 
-        setDeleteLoadingButton
+        setDeleteLoadingButton,
+        modalHeader,
+        setModalHeader
     }}>
       {children}
     </ContactContext.Provider>

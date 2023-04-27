@@ -16,7 +16,8 @@ const Dashboard =  () => {
             ): 
                 <> 
                     <Header/>
-                    <CardMain/>
+                    {/* <CardMain/> */}
+                    <h1>Teste</h1>
                     <ModalAdd/>
                     <ModalUpdateUser/>
                     <ModalContact/>
