@@ -11,7 +11,7 @@ import arrowUp from "../../assets/arrowup.png"
 const Header = () => {
 
     const {logoutUser} = useContext(AccessContext)
-    const {modalHeader, setModalHeader, setModalUpdateUser} = useContext(ContactContext)
+    const {modalHeader, setModalHeader, setModalUpdateUser, infoUser} = useContext(ContactContext)
 
     const changeModalHeader = () => {
         if (modalHeader) {
@@ -28,7 +28,7 @@ const Header = () => {
                 <div onClick={() => changeModalHeader()} className="box-info-user">
                     <img src={noPhoto} alt="profile image" />
                     <div>
-                        <p>Luan rodrigues carlos</p>
+                        <p>{infoUser?.name}</p>
                         <img src={modalHeader ? arrowUp : arrowDown} alt="information button" />
                     </div>
                 </div>

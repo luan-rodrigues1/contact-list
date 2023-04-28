@@ -33,15 +33,7 @@ export const formUpdateSchema = yup.object().shape({
   .required("Telefone obrigatório")
   .matches(/^[0-9]+$/, "Deve conter apenas números")
   .max(13, "Deve ter no máximo 11 caracteres")
-  .min(11, "Deve ter no mínimo 11 caracteres"),
-  password: yup
-    .string()
-    .required("Senha obrigatória")
-    .min(8, "Mínimo  de 8 caracteres")
-    .matches(/[A-Z]/, "Deve conter ao menos uma letra maiúscula")
-    .matches(/[a-z]/, "Deve conter ao menos uma letra minuscula")
-    .matches(/(\d)/, "Deve conter ao menos um número")
-    .matches(/(\W)|_/, "deve conter ao menos um caracter especial")
+  .min(11, "Deve ter no mínimo 11 caracteres")
 })
 
 export const formLoginSchema = yup.object().shape({
