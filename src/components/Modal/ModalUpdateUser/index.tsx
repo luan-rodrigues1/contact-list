@@ -3,15 +3,12 @@ import noPhoto from "../../../assets/nophoto.png"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { ContactContext } from "../../../contexts/ContactContext";
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import { IUpdateUser } from "../../../interfaces/user.interfaces";
 import { formUpdateSchema } from "../../../schemas/user.schemas";
-import openEye from "../../../assets/visibilityopen.png"
-import openClose from "../../../assets/visibilityclose.png"
 
 const ModalUpdateUser = () => {
     const formUser = useRef<HTMLFormElement>(null);
-    const [visibilityPassword, setVisibilityPassword] = useState<boolean>(false)
     const {UpdateUser, modalUpdateUser, setModalUpdateUser, deleteUser, confirmLoadingButton, deleteLoadingButton} = useContext(ContactContext)
 
     const {register, handleSubmit, formState: { errors }} = useForm<IUpdateUser>({
