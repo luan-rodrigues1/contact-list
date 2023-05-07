@@ -7,7 +7,6 @@ import { formContactSchema } from "../../../schemas/contact.schemas";
 import { ModalAddStyle } from "./style"
 
 const ModalAdd = () => {
-    const formRef = useRef<HTMLFormElement>(null);
 
     const { CreateContact, modaladd, setModaladd, confirmLoadingButton } = useContext(ContactContext);
 
@@ -22,8 +21,7 @@ const ModalAdd = () => {
 
     const onSubmit = async (data: ICreateContact) => {
         await CreateContact(data);
-
-        formRef.current?.reset();
+        reset()
     };
 
     return (
@@ -31,10 +29,10 @@ const ModalAdd = () => {
             <div className="header-modal-add">
                 <div>
                     <h2>ADICIONAR CONTATO</h2>
-                    <span onClick={() => (setModaladd(true), formRef.current?.reset())}>X</span>
+                    <span onClick={() => (setModaladd(true), reset())}>X</span>
                 </div>
             </div>
-            <form className="from-modal-add" onSubmit={handleSubmit(onSubmit)} ref={formRef}>
+            <form className="from-modal-add" onSubmit={handleSubmit(onSubmit)} >
                 <div>
                     <label htmlFor="name-add">Nome</label>
                     <input type="text" placeholder="Digite o nome aqui" id="name-add" {...register("name")} />

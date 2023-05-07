@@ -70,6 +70,28 @@ export const ContactCardStyle = styled.ul`
         cursor: pointer;
     }
 
+    .no-contacts {
+        width: 100%;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .no-contacts {
+        width: 100%;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .no-contacts h2 {
+        font-size: 18px;
+        color: #027FE9;
+        font-weight: bold;
+    }
+
     @media (min-width: 768px) {
         display: flex;
         flex-wrap: wrap;
@@ -80,6 +102,10 @@ export const ContactCardStyle = styled.ul`
             padding: 15px;
             
         }
+
+        .no-contacts h2 {
+            font-size: 28px;
+        }   
 
     }
 

@@ -1,7 +1,11 @@
+import { useContext } from "react"
 import search from "../../assets/search.png"
+import { ContactContext } from "../../contexts/ContactContext"
 import { ContactHeaderStyle } from "./style"
 
 const ContactHeader = () => {
+
+    const { setModaladd } = useContext(ContactContext)
 
     return (
         <ContactHeaderStyle>
@@ -9,9 +13,9 @@ const ContactHeader = () => {
             <form>
                 <input placeholder="Digite aqui" type="text" />
                 <button className="search-button" type="submit"><img src={search} alt="search button" /></button>
-                <button type="button" className="button-add">+</button>
+                <button type="button" className="button-add" onClick={() => setModaladd(false)}>+</button>
             </form>
-            <button className="floating-button-add">+</button>
+            <button className="floating-button-add" onClick={() => setModaladd(false)}>+</button>
         </ContactHeaderStyle>
     )
 
