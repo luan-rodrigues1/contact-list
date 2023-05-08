@@ -26,9 +26,16 @@ export const HeaderStyle = styled.header`
         display: flex;
     }
 
-    nav .box-info-user img {
+    nav .box-info-user .noImage {
         width: 40px;
         height: 40px;
+    }
+
+    nav .box-info-user .contactImage {
+        width: 40px;
+        height: 40px;
+        border: #ffffff solid 2px;
+        border-radius: 50%;
     }
 
     nav .box-info-user div {

@@ -26,9 +26,16 @@ export const ContactCardStyle = styled.ul`
         gap: 10px;
     }
 
-    li header .box-contact .box-info-contact img {
+    li header .box-contact .box-info-contact .noImage {
         width: 55px;
         height: 55px;
+    }
+
+    li header .box-contact .box-info-contact .contactImage {
+        width: 55px;
+        height: 55px;
+        border: #ffffff solid 2px;
+        border-radius: 50%;
     }
 
     li header .box-contact .box-info-contact .box-description-contact {

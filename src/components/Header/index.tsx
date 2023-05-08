@@ -26,7 +26,7 @@ const Header = () => {
             <nav>
                 <h1 onClick={() => location.reload()}>Contact List</h1>
                 <div onClick={() => changeModalHeader()} className="box-info-user">
-                    <img src={noPhoto} alt="profile image" />
+                    <img src={infoUser?.profile_picture !== null ? `http://localhost:8080/files/${infoUser?.profile_picture}` : noPhoto} alt="profile image" className={infoUser?.profile_picture !== null ? "contactImage" : "noImage"} />
                     <div>
                         <p>{infoUser?.name}</p>
                         <img src={modalHeader ? arrowUp : arrowDown} alt="information button" />

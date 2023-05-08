@@ -24,7 +24,7 @@ const ContactCard = () => {
                             <header>
                                 <div className="box-contact">
                                     <div className="box-info-contact">
-                                        <img src={contact?.profile_picture !== null ? `http://localhost:8080/files/${contact.profile_picture}` : noPhoto} alt="profile photo" />
+                                        <img src={contact?.profile_picture !== null ? `http://localhost:8080/files/${contact.profile_picture}` : noPhoto} alt="profile photo" className={contact?.profile_picture !== null ? "contactImage" : "noImage"} />
                                         <div className="box-description-contact">
                                             <h3>{contact.name}</h3>
                                             <p>{contact.description}</p>
