@@ -3,23 +3,30 @@ import noPhoto from "../../../assets/nophoto.png"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { ContactContext } from "../../../contexts/ContactContext";
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { IUpdateUser } from "../../../interfaces/user.interfaces";
 import { formUpdateSchema } from "../../../schemas/user.schemas";
 
 const ModalUpdateUser = () => {
-    const formUser = useRef<HTMLFormElement>(null);
-    const {UpdateUser, modalUpdateUser, setModalUpdateUser, deleteUser, confirmLoadingButton, deleteLoadingButton} = useContext(ContactContext)
+    const {UpdateUser, modalUpdateUser, setModalUpdateUser, deleteUser, confirmLoadingButton, deleteLoadingButton, infoUser} = useContext(ContactContext)
 
-    const {register, handleSubmit, formState: { errors }} = useForm<IUpdateUser>({
-        resolver: yupResolver(formUpdateSchema),
+    const {register, handleSubmit, formState: { errors }, reset} = useForm<IUpdateUser>({
+        resolver: yupResolver(formUpdateSchema)
     });
 
     const onSubmit = async (data: IUpdateUser) => {
         await UpdateUser(data);
 
-        formUser.current?.reset();
+        reset();
     };
+
+    useEffect(() => {
+        reset({
+            name: infoUser?.name,
+            email: infoUser?.email,
+            cell_phone: infoUser?.cell_phone,
+        });
+    }, [infoUser]);
 
     return (
         <ModalUpdateUserStyle hidden={modalUpdateUser}>
@@ -30,21 +37,21 @@ const ModalUpdateUser = () => {
                         <button>Adicionar imagem</button>
                     </div>
                 </div>
-                <form className="form-modal-update" onSubmit={handleSubmit(onSubmit)} ref={formUser}>
+                <form className="form-modal-update" onSubmit={handleSubmit(onSubmit)}>
                     <h2>Atualizar Informações</h2>
                     <div>
                         <label htmlFor="name-update">Nome</label>
-                        <input type="text"placeholder="Digite o nome aqui" id="name-update" {...register("name")}/>
+                        <input defaultValue={infoUser?.name} type="text"placeholder="Digite o nome aqui" id="name-update" {...register("name")}/>
                         <p className="erro-update">{errors.name?.message}</p>
                     </div>
                     <div>
                         <label htmlFor="email-update">E-mal</label>
-                        <input type="text"placeholder="Digite o email aqui" id="email-update" {...register("email")}/>
+                        <input defaultValue={infoUser?.email} type="text"placeholder="Digite o email aqui" id="email-update" {...register("email")}/>
                         <p className="erro-update">{errors.email?.message}</p>
                     </div>
                     <div>
                         <label htmlFor="cell-update">Telefone</label>
-                        <input type="text"placeholder="Digite o Telefone aqui" id="cell-update" {...register("cell_phone")}/>
+                        <input defaultValue={infoUser?.cell_phone} type="text"placeholder="Digite o Telefone aqui" id="cell-update" {...register("cell_phone")}/>
                         <p className="erro-update">{errors.cell_phone?.message}</p>
                     </div>
                     <div className="form-button">
@@ -60,7 +67,7 @@ const ModalUpdateUser = () => {
                         }
                     </div>
                 </form>
-                <span onClick={() => (setModalUpdateUser(true), formUser.current?.reset())} className="close-modal-update">X</span>
+                <span onClick={() => (setModalUpdateUser(true), reset())} className="close-modal-update">X</span>
             </div>
         </ModalUpdateUserStyle>
     )

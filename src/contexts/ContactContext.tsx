@@ -83,7 +83,7 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
   }, [location]);
 
   const UpdateUser = async (data: IUpdateUser) => {
-
+    console.log(data)
     try {
       await updateUserApi(data)
       const infoUser = await infoUserApi()
@@ -92,7 +92,7 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
       setModalUpdateUser(true)
 
     } catch {
-      toast.error("Ops! Algo deu errado")
+        toast.error("Ops! Algo deu errado")
     }
 
   }
