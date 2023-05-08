@@ -20,9 +20,8 @@ const ModalAdd = () => {
     });
 
     const onSubmit = async (data: ICreateContact) => {
-        await CreateContact(data);
+        await CreateContact(data, reset);
 
-        reset()
     };
 
     return (

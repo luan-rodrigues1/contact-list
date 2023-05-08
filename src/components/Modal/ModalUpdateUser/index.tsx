@@ -15,9 +15,8 @@ const ModalUpdateUser = () => {
     });
 
     const onSubmit = async (data: IUpdateUser) => {
-        await UpdateUser(data);
+        await UpdateUser(data, reset);
 
-        reset();
     };
 
     useEffect(() => {

@@ -15,9 +15,8 @@ const ModalContact = () => {
     });
 
     const onSubmit = async (data: IUpdateContact) => {
-        await UpdateContact(data);
+        await UpdateContact(data, reset);
 
-        reset();
     };
 
     useEffect(() => {
