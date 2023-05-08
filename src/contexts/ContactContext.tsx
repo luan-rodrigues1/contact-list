@@ -113,12 +113,13 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
     setConfirmLoadingButton(true)
 
     try {
-      await createContactApi(data)
+      const teste = await createContactApi(data)
       const list = await listContactsApi()
       setListContacts(list)
       toast.success("Contato cadastrado com sucesso!")
       setModaladd(true)
       setConfirmLoadingButton(false)
+      console.log(teste)
 
     } catch (erro) {
       toast.error("Ops! Algo deu errado")
@@ -132,16 +133,16 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
     setConfirmLoadingButton(true)
 
     try {
-      await updateContactApi(data, selectedUser?.id!)
-      const list = await listContactsApi()
-      setListContacts(list)
-      toast.success("Contato atualizado com sucesso!")
-      setModalUpdateContact(true)
-      setConfirmLoadingButton(false)
+        await updateContactApi(data, selectedUser?.id!)
+        const list = await listContactsApi()
+        setListContacts(list)
+        toast.success("Contato atualizado com sucesso!")
+        setModalUpdateContact(true)
+        setConfirmLoadingButton(false)
 
     } catch {
-      toast.error("Ops! Algo deu errado")
-      setConfirmLoadingButton(false)
+        toast.error("Ops! Algo deu errado")
+        setConfirmLoadingButton(false)
     }
 
   }
@@ -149,16 +150,16 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
   const deleteContact = async () => {
     setDeleteLoadingButton(true)
     try {
-      await deleteContactApi(selectedUser?.id!)
-      const list = await listContactsApi()
-      setListContacts(list)
-      toast.success("Contato deletado com sucesso!")
-      setModalUpdateContact(true)
-      setDeleteLoadingButton(false)
+        await deleteContactApi(selectedUser?.id!)
+        const list = await listContactsApi()
+        setListContacts(list)
+        toast.success("Contato deletado com sucesso!")
+        setModalUpdateContact(true)
+        setDeleteLoadingButton(false)
 
     } catch {
-      toast.error("Ops! Algo deu errado")
-      setDeleteLoadingButton(false)
+        toast.error("Ops! Algo deu errado")
+        setDeleteLoadingButton(false)
     }
   }
 

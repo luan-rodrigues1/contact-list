@@ -8,7 +8,8 @@ import { ContactContext } from "../../contexts/ContactContext"
 
 const ContactCard = () => {
 
-    const { setSelectedUser, listContacts, setModalUpdateContact } = useContext(ContactContext)
+    const { setSelectedUser, listContacts, setModalUpdateContact, selectedUser } = useContext(ContactContext)
+    
     return (
         <>
             {listContacts[0] === undefined ?
@@ -23,7 +24,7 @@ const ContactCard = () => {
                             <header>
                                 <div className="box-contact">
                                     <div className="box-info-contact">
-                                        <img src={contact?.profile_picture !== null ? contact.profile_picture : noPhoto} alt="profile photo" />
+                                        <img src={contact?.profile_picture !== null ? `http://localhost:8080/files/${contact.profile_picture}` : noPhoto} alt="profile photo" />
                                         <div className="box-description-contact">
                                             <h3>{contact.name}</h3>
                                             <p>{contact.description}</p>

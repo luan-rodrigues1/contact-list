@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { ContactContext } from "../../../contexts/ContactContext";
 import { ICreateContact } from "../../../interfaces/contact.interfaces";
@@ -21,6 +21,7 @@ const ModalAdd = () => {
 
     const onSubmit = async (data: ICreateContact) => {
         await CreateContact(data);
+
         reset()
     };
 
@@ -39,7 +40,7 @@ const ModalAdd = () => {
                     <p className="erro-add">{errors.name?.message}</p>
                 </div>
                 <div>
-                    <label htmlFor="email-add">E-mal</label>
+                    <label htmlFor="email-add">E-mail</label>
                     <input type="text" placeholder="Digite o email aqui" id="email-add" {...register("email")} />
                     <p className="erro-add">{errors.email?.message}</p>
                 </div>
