@@ -8,13 +8,14 @@ import { IUpdateUser } from "../../../interfaces/user.interfaces";
 import { formUpdateSchema } from "../../../schemas/user.schemas";
 
 const ModalUpdateUser = () => {
-    const {UpdateUser, modalUpdateUser, setModalUpdateUser, deleteUser, confirmLoadingButton, deleteLoadingButton, infoUser} = useContext(ContactContext)
+    const {UpdateUser, modalUpdateUser, setModalUpdateUser, deleteUser, confirmLoadingButton, setConfirmLoadingButton, deleteLoadingButton, setDeleteLoadingButton, infoUser} = useContext(ContactContext)
 
     const {register, handleSubmit, formState: { errors }, reset} = useForm<IUpdateUser>({
         resolver: yupResolver(formUpdateSchema)
     });
 
     const onSubmit = async (data: IUpdateUser) => {
+        setConfirmLoadingButton(true)
         await UpdateUser(data, reset);
 
     };
@@ -55,12 +56,12 @@ const ModalUpdateUser = () => {
                     </div>
                     <div className="form-button">
                         {deleteLoadingButton ?
-                            <button onClick={() => deleteUser()} type="button" className="form-button-delete-loading" disabled><span className="loading"/></button>
+                            <button type="button" className="form-button-delete-loading" disabled={true}><span className="loading"/></button>
                             :
-                            <button onClick={() => deleteUser()} type="button" className="form-button-delete">Excluir conta</button>
+                            <button onClick={() => (deleteUser(), setDeleteLoadingButton(true))} type="button" className="form-button-delete">Excluir conta</button>
                         }
                         {confirmLoadingButton ?
-                            <button type="submit" className="form-button-update-loading" disabled><span className="loading"/></button>
+                            <button type="submit" className="form-button-update-loading" disabled={true}><span className="loading"/></button>
                             :
                             <button type="submit" className="form-button-update">Atualizar conta</button>
                         }

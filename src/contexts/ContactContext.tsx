@@ -84,17 +84,19 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
     }, [location]);
 
     const UpdateUser = async (data: IUpdateUser, reset: UseFormReset<IUpdateUser>) => {
-        console.log(data)
+        
         try {
             await updateUserApi(data)
             const infoUser = await infoUserApi()
             setInfoUser(infoUser)
             toast.success("Conta atualizado com sucesso!")
+            setConfirmLoadingButton(false)
             setModalUpdateUser(true)
             reset()
 
         } catch (error: any){
             console.error(error)
+            setConfirmLoadingButton(false)
             if (error.response.status === 409) {
 
                 toast.error("já existe um usuário com essa email ou telefone")
@@ -111,9 +113,11 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
             await deleteUserApi()
             toast.success("Conta deletada com sucesso!")
             window.localStorage.clear()
+            setDeleteLoadingButton(false)
             setIsLoading(true)
             navigate("/")
         } catch {
+            setDeleteLoadingButton(false)
             toast.error("Ops! Algo deu errado")
         }
     }
