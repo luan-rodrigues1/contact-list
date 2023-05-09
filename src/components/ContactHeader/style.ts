@@ -29,6 +29,8 @@ export const ContactHeaderStyle = styled.section`
         border-radius: 15px;
         border: #49A0EC solid 1.8px;
         background-color: #ffffff;
+        padding-left: 10px;
+        
     }
 
     form .search-button {
@@ -114,10 +116,6 @@ export const ContactHeaderStyle = styled.section`
 
         form {
             max-width: 400px;
-        }
-
-        form input {
-            padding-left: 10px;
         }
     }
 `
