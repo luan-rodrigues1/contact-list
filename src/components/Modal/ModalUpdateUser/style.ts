@@ -113,7 +113,8 @@ export const ModalUpdateUserStyle = styled.div`
 
     .form-modal-update .form-button {
         display: flex;
-        gap: 6px;
+        gap: 10px;
+        margin-top: 10px;
     }
 
     .form-modal-update .form-button .form-button-update {
@@ -193,8 +194,7 @@ export const ModalUpdateUserStyle = styled.div`
     }
 
     @media (min-width: 768px) {
-        max-width: 800px;
-        max-width: auto;
+        max-width: 650px;
         top: 33%;
 
         .modal-update {
@@ -229,7 +229,8 @@ export const ModalUpdateUserStyle = styled.div`
             display: flex;
             flex-direction: row;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
+            margin-top: 10px;
         }
 
         .form-modal-update .form-button .form-button-update {

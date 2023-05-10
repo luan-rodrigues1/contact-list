@@ -50,24 +50,16 @@ const ModalUpdateUser = () => {
                         <input type="text"placeholder="Digite o Telefone aqui" id="cell-update" {...register("cell_phone")}/>
                         <p className="erro-update">{errors.cell_phone?.message}</p>
                     </div>
-                    <div>
-                        <label htmlFor="password-update">Password</label>
-                        <div className="input-password-modal">
-                            <input type={visibilityPassword ? "text" : "password"} placeholder="Digite o Telefone aqui" id="password-update" {...register("password")}/>
-                            <img onClick={() => setVisibilityPassword(visibilityPassword ? false : true)} src={visibilityPassword ? openEye : openClose} alt="button password visibility" />
-                        </div>
-                        <p className="erro-update">{errors.password?.message}</p>
-                    </div>
                     <div className="form-button">
-                        {confirmLoadingButton ?
-                            <button type="submit" className="form-button-update-loading" disabled><span className="loading"/></button>
-                            :
-                            <button type="submit" className="form-button-update">Atualizar conta</button>
-                        }
                         {deleteLoadingButton ?
                             <button onClick={() => deleteUser()} type="button" className="form-button-delete-loading" disabled><span className="loading"/></button>
                             :
                             <button onClick={() => deleteUser()} type="button" className="form-button-delete">Excluir conta</button>
+                        }
+                        {confirmLoadingButton ?
+                            <button type="submit" className="form-button-update-loading" disabled><span className="loading"/></button>
+                            :
+                            <button type="submit" className="form-button-update">Atualizar conta</button>
                         }
                     </div>
                 </form>
