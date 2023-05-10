@@ -7,7 +7,7 @@ import { createContactApi } from "../services/createContactApi";
 import { deleteContactApi } from "../services/deleteContactApi";
 import { deleteUserApi } from "../services/deleteUserAPi";
 import { infoUserApi } from "../services/infoUserApi";
-import { listContactsApi } from "../services/listContactsApi";
+import { listContactsApi, searchContactApi } from "../services/listContactsApi";
 import { updateContactApi } from "../services/updateContactApi";
 import { updateUserApi } from "../services/updateUserApi";
 import { AccessContext } from "./AccessContext";
@@ -40,6 +40,13 @@ export interface IContactContext {
   deleteContact: () => Promise<void>
   UpdateUser: (data: IUpdateUser, reset: UseFormReset<IUpdateUser>) => Promise<void>
   deleteUser: () => Promise<void>
+  contactSearch: string
+  setContactSearch: React.Dispatch<React.SetStateAction<string>>
+  searchContact: () => Promise<void>
+  latestPolls: string[]
+  setLatestPolls: React.Dispatch<React.SetStateAction<string[]>>
+  activeSearch: boolean
+  setActiveSearch: React.Dispatch<React.SetStateAction<boolean>>
 
 }
 
@@ -59,6 +66,9 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
     const [confirmLoadingButton, setConfirmLoadingButton] = useState<boolean>(false)
     const [deleteLoadingButton, setDeleteLoadingButton] = useState<boolean>(false)
     const [modalHeader, setModalHeader] = useState<boolean>(false)
+    const [contactSearch, setContactSearch] = useState<string>("")
+    const [latestPolls, setLatestPolls] = useState<string[]>([])
+    const [activeSearch, setActiveSearch] = useState<boolean>(false)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -151,7 +161,8 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
 
         try {
             await updateContactApi(data, selectedUser?.id!)
-            const list = await listContactsApi()
+            let list: IContact[] = []
+            activeSearch ? list = await searchContactApi(latestPolls[0]) : list = await listContactsApi()
             setListContacts(list)
             toast.success("Contato atualizado com sucesso!")
             setModalUpdateContact(true)
@@ -162,7 +173,7 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
             console.error(error)
             if (error.response.status === 409) {
 
-                toast.error("já existe um usuário com essa email ou telefone")
+                toast.error("já existe um contato com essa email ou telefone")
 
             } else {
 
@@ -177,7 +188,8 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
         setDeleteLoadingButton(true)
         try {
             await deleteContactApi(selectedUser?.id!)
-            const list = await listContactsApi()
+            let list: IContact[] = []
+            activeSearch ? list = await searchContactApi(latestPolls[0]) : list = await listContactsApi()
             setListContacts(list)
             toast.success("Contato deletado com sucesso!")
             setModalUpdateContact(true)
@@ -186,6 +198,19 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
         } catch {
             toast.error("Ops! Algo deu errado")
             setDeleteLoadingButton(false)
+        }
+    }
+
+    const searchContact = async () => {
+
+        try {
+            const searchList = await searchContactApi(contactSearch)
+            contactSearch.trim() === "" ? setActiveSearch(false) : setActiveSearch(true)
+            contactSearch.trim() === "" ? setLatestPolls([...latestPolls]) : setLatestPolls([contactSearch, ...latestPolls])
+            setListContacts(searchList)
+            
+        } catch (error) {
+            toast.error("Ops! Algo deu errado")
         }
     }
 
@@ -213,7 +238,14 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
             deleteLoadingButton, 
             setDeleteLoadingButton,
             modalHeader,
-            setModalHeader
+            setModalHeader,
+            contactSearch,
+            setContactSearch,
+            searchContact,
+            latestPolls,
+            setLatestPolls,
+            activeSearch,
+            setActiveSearch
         }}>
         {children}
         </ContactContext.Provider>

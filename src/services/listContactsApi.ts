@@ -9,3 +9,11 @@ export async function listContactsApi(): Promise<IContact[]> {
     
     return data;
 }
+
+export async function searchContactApi(value: string): Promise<IContact[]> {
+    const token = localStorage.getItem("TOKEN");
+    api.defaults.headers.authorization = `Bearer ${token}`;
+    const { data } = await api.get<IContact[]>(`/contacts?search=${value}`);
+    
+    return data;
+}

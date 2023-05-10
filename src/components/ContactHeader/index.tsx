@@ -5,13 +5,13 @@ import { ContactHeaderStyle } from "./style"
 
 const ContactHeader = () => {
 
-    const { setModaladd } = useContext(ContactContext)
-
+    const { setModaladd, contactSearch, setContactSearch, searchContact } = useContext(ContactContext)
+    
     return (
         <ContactHeaderStyle>
             <h2>Seus Contatos:</h2>
-            <form>
-                <input placeholder="Digite aqui" type="text" />
+            <form onSubmit={(event) => (event.preventDefault(), searchContact())}>
+                <input placeholder="Digite aqui" type="text" onChange={(event) => setContactSearch(event.target.value)}/>
                 <button className="search-button" type="submit"><img src={search} alt="search button" /></button>
                 <button type="button" className="button-add" onClick={() => setModaladd(false)}>+</button>
             </form>
