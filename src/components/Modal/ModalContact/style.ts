@@ -15,6 +15,7 @@ export const ModalUpdateContactStyle = styled.div`
     max-width: 500px;
     opacity: 0;
     animation: ${openModal} 0.8s forwards;
+    box-shadow: 0 2px 5px #808080;
 
     .header-modal-contact {
         width: 100%;

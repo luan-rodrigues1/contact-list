@@ -6,6 +6,8 @@ import ModalAdd from "../../components/Modal/ModalAdd"
 import ModalContact from "../../components/Modal/ModalContact"
 import ModalUpdateUser from "../../components/Modal/ModalUpdateUser"
 import { AccessContext } from "../../contexts/AccessContext"
+import ContactHeader from "../../components/ContactHeader"
+import ContactCard from "../../components/ContactCard"
 
 const Dashboard =  () => {
     const {isLoading} = useContext(AccessContext)
@@ -17,7 +19,8 @@ const Dashboard =  () => {
                 <> 
                     <Header/>
                     {/* <CardMain/> */}
-                    <h1>Teste</h1>
+                    <ContactHeader/>
+                    <ContactCard/>
                     <ModalAdd/>
                     <ModalUpdateUser/>
                     <ModalContact/>

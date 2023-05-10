@@ -16,6 +16,7 @@ export const ModalUpdateUserStyle = styled.div`
     opacity: 0;
     animation: ${openModal} 0.8s forwards;
     max-width: 406px;
+    box-shadow: 0 2px 5px #808080;
 
     .modal-update {
         width: 100%;
