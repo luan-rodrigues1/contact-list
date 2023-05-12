@@ -3,12 +3,13 @@ import noPhoto from "../../../assets/nophoto.png"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { ContactContext } from "../../../contexts/ContactContext";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { IUpdateUser } from "../../../interfaces/user.interfaces";
 import { formUpdateSchema } from "../../../schemas/user.schemas";
 
 const ModalUpdateUser = () => {
-    const {UpdateUser, modalUpdateUser, setModalUpdateUser, deleteUser, confirmLoadingButton, setConfirmLoadingButton, deleteLoadingButton, setDeleteLoadingButton, infoUser} = useContext(ContactContext)
+    const {UpdateUser, modalUpdateUser, setModalUpdateUser, deleteUser, confirmLoadingButton, setConfirmLoadingButton, deleteLoadingButton, setDeleteLoadingButton, infoUser, setFileProfileImage, fileProfileImage, updateProfileImage} = useContext(ContactContext)
+    const [teste, setTeste] = useState("")
 
     const {register, handleSubmit, formState: { errors }, reset} = useForm<IUpdateUser>({
         resolver: yupResolver(formUpdateSchema)
@@ -16,7 +17,8 @@ const ModalUpdateUser = () => {
 
     const onSubmit = async (data: IUpdateUser) => {
         setConfirmLoadingButton(true)
-        await UpdateUser(data, reset);
+
+        fileProfileImage ? await updateProfileImage(data, reset) : await UpdateUser(data, reset);
 
     };
 
@@ -32,10 +34,13 @@ const ModalUpdateUser = () => {
         <ModalUpdateUserStyle hidden={modalUpdateUser}>
             <div className="modal-update">
                 <div className="header-modal-update">
-                    <div>
-                        <img src={noPhoto} alt="profile picture" />
-                        <button>Adicionar imagem</button>
-                    </div>
+                    <form> 
+                        <img src={fileProfileImage ? URL.createObjectURL(fileProfileImage!) : infoUser?.profile_picture ? `http://localhost:8080/files/${infoUser?.profile_picture}` : noPhoto} alt="profile picture" className={infoUser?.profile_picture || fileProfileImage ? "contactImage" : "noImage"} />
+                        <label htmlFor="profile-imagem" className="custom-file-upload">
+                            Alterar imagem
+                        </label>
+                        <input className="hidden" type="file" id="profile-imagem" name="profile-imagem" accept="image/*" onChange={(e) => setFileProfileImage(e.target.files![0])}/>
+                    </form>
                 </div>
                 <form className="form-modal-update" onSubmit={handleSubmit(onSubmit)}>
                     <h2>Atualizar Informações</h2>
@@ -67,7 +72,7 @@ const ModalUpdateUser = () => {
                         }
                     </div>
                 </form>
-                <span onClick={() => (setModalUpdateUser(true), reset())} className="close-modal-update">X</span>
+                <span onClick={() => (setModalUpdateUser(true), setFileProfileImage(null), reset())} className="close-modal-update">X</span>
             </div>
         </ModalUpdateUserStyle>
     )

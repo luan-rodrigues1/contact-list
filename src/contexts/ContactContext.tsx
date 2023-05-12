@@ -9,7 +9,7 @@ import { deleteUserApi } from "../services/deleteUserAPi";
 import { infoUserApi } from "../services/infoUserApi";
 import { listContactsApi, searchContactApi } from "../services/listContactsApi";
 import { updateContactApi } from "../services/updateContactApi";
-import { updateUserApi } from "../services/updateUserApi";
+import { updateProfileImageApi, updateUserApi } from "../services/updateUserApi";
 import { AccessContext } from "./AccessContext";
 import { UseFormReset } from "react-hook-form";
 
@@ -47,7 +47,9 @@ export interface IContactContext {
   setLatestPolls: React.Dispatch<React.SetStateAction<string[]>>
   activeSearch: boolean
   setActiveSearch: React.Dispatch<React.SetStateAction<boolean>>
-
+  fileProfileImage:  Blob | MediaSource | null
+  setFileProfileImage: React.Dispatch<React.SetStateAction<Blob | MediaSource | null>>
+  updateProfileImage: (data: IUpdateUser, reset: UseFormReset<IUpdateUser>) => Promise<void>
 }
 
 export const ContactContext = createContext<IContactContext>({} as IContactContext);
@@ -69,6 +71,7 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
     const [contactSearch, setContactSearch] = useState<string>("")
     const [latestPolls, setLatestPolls] = useState<string[]>([])
     const [activeSearch, setActiveSearch] = useState<boolean>(false)
+    const [fileProfileImage, setFileProfileImage] = useState<Blob | MediaSource | null>(null)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -214,6 +217,18 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
         }
     }
 
+    const updateProfileImage = async (data: IUpdateUser, reset: UseFormReset<IUpdateUser>) => {
+
+        try {
+            await updateProfileImageApi(fileProfileImage)
+            setFileProfileImage(null)
+            UpdateUser(data, reset)
+
+        } catch (error) {
+            toast.error("Ops! Algo deu errado")
+        }
+    }
+
     return (
         <ContactContext.Provider value={{
             infoUser,
@@ -245,7 +260,10 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
             latestPolls,
             setLatestPolls,
             activeSearch,
-            setActiveSearch
+            setActiveSearch,
+            fileProfileImage,
+            setFileProfileImage,
+            updateProfileImage
         }}>
         {children}
         </ContactContext.Provider>

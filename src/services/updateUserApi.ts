@@ -8,3 +8,21 @@ export async function updateUserApi(body: IUpdateContact): Promise<IContact> {
 
     return data;
 }
+
+export async function updateProfileImageApi (file: any): Promise<IContact> {
+    const token = localStorage.getItem("TOKEN");
+    const headers = {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+    };
+
+    const formData = new FormData();
+    formData.append("avatar", file);
+
+
+    const { data } = await api.patch<IContact>("/users/upload", formData, {
+        headers,
+    });
+
+    return data
+}
