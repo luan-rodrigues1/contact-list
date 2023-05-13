@@ -16,6 +16,7 @@ export const ModalUpdateUserStyle = styled.div`
     opacity: 0;
     animation: ${openModal} 0.8s forwards;
     max-width: 406px;
+    box-shadow: 0 2px 5px #808080;
 
     .modal-update {
         width: 100%;
@@ -30,22 +31,26 @@ export const ModalUpdateUserStyle = styled.div`
         border-bottom-right-radius: 10px;
     }
 
-    .header-modal-update div {
+    .header-modal-update form {
         width: 75%;
         height: 100%;
         display: flex;
-        justify-content: space-between;
+        /* flex-direction: column; */
+        justify-content: center;
+        gap: 20px;
         align-items: center;
         margin: 0 auto;
         max-width: 267px;
     }
 
-    .header-modal-update div img {
-        width: 65px;
-        height: 65px;
+    .header-modal-update form img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: solid 2px #ffffff;
     }
 
-    .header-modal-update div button {
+    /* .header-modal-update form button {
         width: 150px;
         height: 40px;
         background-color: #027fe9;
@@ -54,6 +59,41 @@ export const ModalUpdateUserStyle = styled.div`
         font-size: 14px;
         font-weight: bold;
         color: #ffffff;
+        transition: 0.6s;
+    } */
+
+    /* .header-modal-update form button:hover {
+        width: 150px;
+        height: 40px;
+        background-color: #027fe9;
+        border: #49A0EC solid 1.5px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #ffffff;
+        transition: 0.6s;
+    } */
+
+    .custom-file-upload {
+        width: 150px;
+        height: 40px;
+        background-color: #027fe9;
+        border: #ffffff solid 1.5px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #ffffff;
+        transition: 0.6s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.6s;
+    }
+
+    .custom-file-upload:hover {
+        background-color: #49A0EC;
+        transition: 0.6s;
     }
 
     .form-modal-update {
@@ -113,7 +153,8 @@ export const ModalUpdateUserStyle = styled.div`
 
     .form-modal-update .form-button {
         display: flex;
-        gap: 6px;
+        gap: 10px;
+        margin-top: 10px;
     }
 
     .form-modal-update .form-button .form-button-update {
@@ -193,8 +234,7 @@ export const ModalUpdateUserStyle = styled.div`
     }
 
     @media (min-width: 768px) {
-        max-width: 800px;
-        max-width: auto;
+        max-width: 650px;
         top: 33%;
 
         .modal-update {
@@ -210,13 +250,13 @@ export const ModalUpdateUserStyle = styled.div`
             border-bottom-right-radius: 10px;
         }
 
-        .header-modal-update div {
+        .header-modal-update form {
             flex-direction: column;
             justify-content: center;
             gap: 30px;
         }
 
-        .header-modal-update div img {
+        .header-modal-update form img {
             width: 150px;
             height: 150px;
         }
@@ -229,7 +269,8 @@ export const ModalUpdateUserStyle = styled.div`
             display: flex;
             flex-direction: row;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
+            margin-top: 10px;
         }
 
         .form-modal-update .form-button .form-button-update {
