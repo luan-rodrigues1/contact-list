@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { IContact } from "../interfaces/contact.interfaces";
@@ -82,6 +82,17 @@ export const AccessProvider = ({ children }: IAccessProvidersProps) => {
         setIsLoading(true)
         return navigate("/")
     }
+
+    useEffect(() => {
+        if (location.pathname === "/") {
+            const token = window.localStorage.getItem("TOKEN");
+
+            if (token) {
+                navigate("/dashboard")
+            }
+        }
+
+    }, [location])
 
   return (
     <AccessContext.Provider value={{
