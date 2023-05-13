@@ -1,5 +1,4 @@
 import { useContext, useState } from "react"
-import CardMain from "../../components/Card/CardMain"
 import Header from "../../components/Header"
 import Loading from "../../components/Loading"
 import ModalAdd from "../../components/Modal/ModalAdd"
@@ -18,7 +17,6 @@ const Dashboard =  () => {
             ): 
                 <> 
                     <Header/>
-                    {/* <CardMain/> */}
                     <ContactHeader/>
                     <ContactCard/>
                     <ModalAdd/>

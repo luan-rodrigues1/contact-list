@@ -79,7 +79,7 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
 
             const token = window.localStorage.getItem("TOKEN");
 
-            if (token !== null) {
+            if (token) {
                 try {
                     const data = await infoUserApi();
                     setInfoUser(data);
@@ -89,6 +89,7 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
                     console.error(error);
                 }
             } else {
+                setIsLoading(true)
                 navigate("/")
             }
         }
