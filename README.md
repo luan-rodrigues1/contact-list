@@ -1,10 +1,9 @@
 # contact-list
 ###
+Link do back-end da aplicação: https://github.com/luan-rodrigues1/contact-list-api
 # Sobre o projeto
 
 Uma aplicação em React e TypeScript que facilita o usuário a listar, criar e editar contatos. Com login, cadastro e upload de imagens, ela organiza contatos de forma eficiente. Uma solução completa, intuitiva e personalizada para gerenciar seus contatos.
-
-Link do back-end da aplicação: https://github.com/luan-rodrigues1/contact-list-api
 
 # Tecnologias e bibliotecas utilizadas
 - React 
