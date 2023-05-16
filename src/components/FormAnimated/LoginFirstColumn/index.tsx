@@ -38,7 +38,7 @@ const LoginFirstColumn = () => {
                     {buttonLoading ? 
                         <button type="submit" className="button-form-login">Entrar</button>
                         :
-                        <button type="submit" className="button-loading" disabled><span className="loading"/></button>
+                        <button type="submit" className="button-loading" disabled={true}><span className="loading"/></button>
                     }
                 </form>
             </div>
