@@ -50,6 +50,8 @@ export interface IContactContext {
   fileProfileImage:  Blob | MediaSource | null
   setFileProfileImage: React.Dispatch<React.SetStateAction<Blob | MediaSource | null>>
   updateProfileImage: (data: IUpdateUser, reset: UseFormReset<IUpdateUser>) => Promise<void>
+  searchLoading: boolean
+  setSearchLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const ContactContext = createContext<IContactContext>({} as IContactContext);
@@ -72,6 +74,7 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
     const [latestPolls, setLatestPolls] = useState<string[]>([])
     const [activeSearch, setActiveSearch] = useState<boolean>(false)
     const [fileProfileImage, setFileProfileImage] = useState<Blob | MediaSource | null>(null)
+    const [searchLoading, setSearchLoading] = useState<boolean>(false)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -87,6 +90,8 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
                     setIsLoading(false)
                 } catch (error) {
                     console.error(error);
+                    setIsLoading(true)
+                    navigate("/")
                 }
             } else {
                 setIsLoading(true)
@@ -212,9 +217,11 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
             contactSearch.trim() === "" ? setActiveSearch(false) : setActiveSearch(true)
             contactSearch.trim() === "" ? setLatestPolls([...latestPolls]) : setLatestPolls([contactSearch, ...latestPolls])
             setListContacts(searchList)
+            setSearchLoading(false)
             
         } catch (error) {
             toast.error("Ops! Algo deu errado")
+            setSearchLoading(false)
         }
     }
 
@@ -264,7 +271,9 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
             setActiveSearch,
             fileProfileImage,
             setFileProfileImage,
-            updateProfileImage
+            updateProfileImage,
+            searchLoading,
+            setSearchLoading
         }}>
         {children}
         </ContactContext.Provider>
