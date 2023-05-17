@@ -71,6 +71,7 @@ export const ModalUpdateContactStyle = styled.div`
         background-color: #F1F1F1;
         margin: 5px 0 2.5px 0;
         padding-left: 5px;
+        color: #808080;
     }
 
     .from-modal-contact div .erro-contact {
