@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { ChangeEvent, createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { IContact } from "../interfaces/contact.interfaces";
@@ -6,6 +6,7 @@ import { ILoginUser, IRegisterUser } from "../interfaces/user.interfaces";
 import { loginUserApi } from "../services/loginUserApi";
 import { registerUserApi } from "../services/registerUserApi";
 import { ContactContext } from "./ContactContext";
+import { UseFormReset, UseFormSetValue } from "react-hook-form";
 
 interface IAccessProvidersProps {
   children: ReactNode;
@@ -13,13 +14,16 @@ interface IAccessProvidersProps {
 export interface IAccessContext {
   switchButton: boolean
   setSwitchButton: React.Dispatch<React.SetStateAction<boolean>>
-  registerUser: (data: IRegisterUser) => Promise<void>
+  registerUser: (data: IRegisterUser, reset: UseFormReset<IRegisterUser>) => Promise<void>
   loginUser: (data: ILoginUser) => Promise<void>
   logoutUser: () => void
   isLoading: boolean
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
   buttonLoading: boolean
   setButtonLoading: React.Dispatch<React.SetStateAction<boolean>>
+  maskedValue: string
+  setMaskedValue: React.Dispatch<React.SetStateAction<string>>
+  formatCellInput: (e: React.FormEvent<HTMLInputElement>, valueCallback: UseFormSetValue<any>) => void
 }
 
 export const AccessContext = createContext<IAccessContext>({} as IAccessContext);
@@ -30,13 +34,15 @@ export const AccessProvider = ({ children }: IAccessProvidersProps) => {
     const [switchButton, setSwitchButton] = useState<boolean>(true)
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [buttonLoading, setButtonLoading] = useState<boolean>(true)
+    const [maskedValue, setMaskedValue] = useState<string>('')
 
-    const registerUser = async (data: IRegisterUser) => {
+    const registerUser = async (data: IRegisterUser, reset: UseFormReset<IRegisterUser>) => {
         setButtonLoading(false)
         try {
             await registerUserApi(data);
             setButtonLoading(true)
             toast.success("Conta criada com sucesso!");
+            reset()
 
         } catch (error: any) {
             console.error(error)
@@ -83,6 +89,15 @@ export const AccessProvider = ({ children }: IAccessProvidersProps) => {
         return navigate("/")
     }
 
+    const formatCellInput = (e: React.FormEvent<HTMLInputElement>, valueCallback: UseFormSetValue<any>) => {
+        e.currentTarget.maxLength = 15
+        let value = e.currentTarget.value
+        value = value.replace(/\D/g, "");
+        value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
+        valueCallback("cell_phone", value)
+
+    };
+
     useEffect(() => {
         if (location.pathname === "/") {
             const token = window.localStorage.getItem("TOKEN");
@@ -104,7 +119,10 @@ export const AccessProvider = ({ children }: IAccessProvidersProps) => {
         isLoading,
         setIsLoading,
         buttonLoading,
-        setButtonLoading
+        setButtonLoading,
+        maskedValue,
+        setMaskedValue,
+        formatCellInput
     }}>
       {children}
     </AccessContext.Provider>

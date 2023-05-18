@@ -108,7 +108,7 @@ export const ContactProvider = ({ children }: IContactProvidersProps) => {
             await updateUserApi(data)
             const infoUser = await infoUserApi()
             setInfoUser(infoUser)
-            toast.success("Conta atualizado com sucesso!")
+            toast.success("Conta atualizada com sucesso!")
             setConfirmLoadingButton(false)
             setModalUpdateUser(true)
             reset()
