@@ -9,7 +9,7 @@ import { ContactContext } from "../../contexts/ContactContext"
 const ContactCard = () => {
 
     const { setSelectedUser, listContacts, setModalUpdateContact, selectedUser } = useContext(ContactContext)
-    
+
     return (
         <>
             {listContacts[0] === undefined ?
@@ -38,11 +38,14 @@ const ContactCard = () => {
                             <section className="box-communication-contact">
                                 <div>
                                     <img src={cellIcon} alt="contact number" />
-                                    <span>{contact.cell_phone}</span>
+                                    <a 
+                                    target="_blank" 
+                                    href={`https://api.whatsapp.com/send?phone=${encodeURIComponent(55+contact.cell_phone.replace(/\D/g, ''))}&text=${encodeURIComponent("Olá, estou vindo do site Contact List")}`}
+                                    >{contact.cell_phone}</a>
                                 </div>
                                 <div>
                                     <img src={emailIcon} alt="contact email" />
-                                    <span>{contact.email}</span>
+                                    <a href={`mailto:${contact.email}`}>{contact.email}</a>
                                 </div>
                             </section>
                         </li>

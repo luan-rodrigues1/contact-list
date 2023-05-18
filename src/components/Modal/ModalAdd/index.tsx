@@ -48,7 +48,7 @@ const ModalAdd = () => {
                 </div>
                 <div>
                     <label htmlFor="cell-add">Telefone</label>
-                    <input type="text" placeholder="Digite o Telefone aqui" id="cell-add" onKeyUp={(e) => formatCellInput(e, setValue)} {...register("cell_phone")} maxLength={11}/>
+                    <input type="text" placeholder="Digite o Telefone aqui" id="cell-add" onKeyUp={(e) => formatCellInput(e, setValue)} {...register("cell_phone")} maxLength={15}/>
                     <p className="erro-add">{errors.cell_phone?.message}</p>
                 </div>
                 <div>

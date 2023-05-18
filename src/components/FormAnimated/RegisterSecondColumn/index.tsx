@@ -40,7 +40,7 @@ const RegisterSecondColumn = () => {
                     </div>
                     <div>
                         <label htmlFor="cell_phone">Telefone</label>
-                        <input type="text" placeholder="Ex: (99) 99999-9999" id="cell_phone" onKeyUp={(e) => formatCellInput(e, setValue)} {...register("cell_phone")} maxLength={11}/>
+                        <input type="text" placeholder="Ex: (99) 99999-9999" id="cell_phone" onKeyUp={(e) => formatCellInput(e, setValue)} {...register("cell_phone")} maxLength={15}/>
                         <p>{errors.cell_phone?.message}</p>
                     </div>
                     <div>
