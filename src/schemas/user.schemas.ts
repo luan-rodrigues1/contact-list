@@ -6,9 +6,9 @@ export const formRegistrationSchema = yup.object().shape({
     cell_phone: yup
     .string()
     .required("Telefone obrigatório")
-    .matches(/^[0-9]+$/, "Deve conter apenas números")
-    .max(13, "Deve ter no máximo 11 caracteres")
-    .min(11, "Deve ter no mínimo 11 caracteres"),
+    .matches(/^\(\d{2}\)\s\d{5}-\d{4}$/, "Formato de telefone inválido Ex: (99) 99999-9999")
+    .max(15, "Deve ter no máximo 15 caracteres")
+    .min(15, "Deve ter no mínimo 15 caracteres"),
     password: yup
       .string()
       .required("Senha obrigatória")
@@ -26,14 +26,14 @@ export const formRegistrationSchema = yup.object().shape({
 });
 
 export const formUpdateSchema = yup.object().shape({
-  name: yup.string().required("Nome obrigatório").max(50, "Deve ter no máximo 50 caracteres"),
-  email: yup.string().required("Email obrigatório").email("Email inválido"),
-  cell_phone: yup
-  .string()
-  .required("Telefone obrigatório")
-  .matches(/^[0-9]+$/, "Deve conter apenas números")
-  .max(13, "Deve ter no máximo 11 caracteres")
-  .min(11, "Deve ter no mínimo 11 caracteres")
+    name: yup.string().required("Nome obrigatório").max(50, "Deve ter no máximo 50 caracteres"),
+    email: yup.string().required("Email obrigatório").email("Email inválido"),
+    cell_phone: yup
+    .string()
+    .required("Telefone obrigatório")
+    .matches(/^\(\d{2}\)\s\d{5}-\d{4}$/, "Formato de telefone inválido Ex: (99) 99999-9999")
+    .max(15, "Deve ter no máximo 15 caracteres")
+    .min(15, "Deve ter no mínimo 15 caracteres")
 })
 
 export const formLoginSchema = yup.object().shape({

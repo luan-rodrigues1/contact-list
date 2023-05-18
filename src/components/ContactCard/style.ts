@@ -70,7 +70,7 @@ export const ContactCardStyle = styled.ul`
         gap: 12px;
     }
 
-    section div span {
+    section div a {
         font-size: 14px;
         font-weight: bold;
         color: #ffffff;

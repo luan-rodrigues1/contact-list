@@ -5,12 +5,14 @@ import { ContactContext } from "../../../contexts/ContactContext";
 import { IUpdateContact } from "../../../interfaces/contact.interfaces";
 import { formContactSchema } from "../../../schemas/contact.schemas";
 import { ModalUpdateContactStyle } from "./style"
+import { AccessContext } from "../../../contexts/AccessContext";
 
 const ModalContact = () => {
 
     const {UpdateContact, modalUpdateContact, setModalUpdateContact, deleteContact, selectedUser, setSelectedUser, confirmLoadingButton, deleteLoadingButton} = useContext(ContactContext)
+    const {formatCellInput} =  useContext(AccessContext)
     
-    const {register, handleSubmit, formState: { errors }, reset} = useForm<IUpdateContact>({
+    const {register, handleSubmit, setValue, formState: { errors }, reset} = useForm<IUpdateContact>({
         resolver: yupResolver(formContactSchema)
     });
 
@@ -49,7 +51,7 @@ const ModalContact = () => {
                 </div>
                 <div>
                     <label htmlFor="cell-contact">Telefone</label>
-                    <input defaultValue={selectedUser?.cell_phone} type="text"placeholder="Digite o Telefone aqui" id="cell-contact" {...register("cell_phone")}/>
+                    <input defaultValue={selectedUser?.cell_phone} type="text"placeholder="Digite o Telefone aqui" id="cell-contact" onKeyUp={(e) => formatCellInput(e, setValue)}  {...register("cell_phone")} maxLength={15}/>
                     <p className="erro-contact">{errors.cell_phone?.message}</p>
                 </div>
                 <div>

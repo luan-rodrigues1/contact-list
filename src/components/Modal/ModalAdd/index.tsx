@@ -5,14 +5,17 @@ import { ContactContext } from "../../../contexts/ContactContext";
 import { ICreateContact } from "../../../interfaces/contact.interfaces";
 import { formContactSchema } from "../../../schemas/contact.schemas";
 import { ModalAddStyle } from "./style"
+import { AccessContext } from "../../../contexts/AccessContext";
 
 const ModalAdd = () => {
 
     const { CreateContact, modaladd, setModaladd, confirmLoadingButton } = useContext(ContactContext);
+    const {formatCellInput} = useContext(AccessContext)
 
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors },
         reset,
     } = useForm<ICreateContact>({
@@ -45,7 +48,7 @@ const ModalAdd = () => {
                 </div>
                 <div>
                     <label htmlFor="cell-add">Telefone</label>
-                    <input type="text" placeholder="Digite o Telefone aqui" id="cell-add" {...register("cell_phone")} />
+                    <input type="text" placeholder="Digite o Telefone aqui" id="cell-add" onKeyUp={(e) => formatCellInput(e, setValue)} {...register("cell_phone")} maxLength={15}/>
                     <p className="erro-add">{errors.cell_phone?.message}</p>
                 </div>
                 <div>

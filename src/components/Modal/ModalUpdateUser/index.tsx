@@ -6,12 +6,13 @@ import { ContactContext } from "../../../contexts/ContactContext";
 import { useContext, useEffect, useRef, useState } from "react";
 import { IUpdateUser } from "../../../interfaces/user.interfaces";
 import { formUpdateSchema } from "../../../schemas/user.schemas";
+import { AccessContext } from "../../../contexts/AccessContext";
 
 const ModalUpdateUser = () => {
     const {UpdateUser, modalUpdateUser, setModalUpdateUser, deleteUser, confirmLoadingButton, setConfirmLoadingButton, deleteLoadingButton, setDeleteLoadingButton, infoUser, setFileProfileImage, fileProfileImage, updateProfileImage} = useContext(ContactContext)
-    const [teste, setTeste] = useState("")
+    const {formatCellInput} =  useContext(AccessContext)
 
-    const {register, handleSubmit, formState: { errors }, reset} = useForm<IUpdateUser>({
+    const {register, handleSubmit, setValue, formState: { errors }, reset} = useForm<IUpdateUser>({
         resolver: yupResolver(formUpdateSchema)
     });
 
@@ -56,7 +57,7 @@ const ModalUpdateUser = () => {
                     </div>
                     <div>
                         <label htmlFor="cell-update">Telefone</label>
-                        <input defaultValue={infoUser?.cell_phone} type="text"placeholder="Digite o Telefone aqui" id="cell-update" {...register("cell_phone")}/>
+                        <input defaultValue={infoUser?.cell_phone} type="text"placeholder="Digite o Telefone aqui" id="cell-update" onKeyUp={(e) => formatCellInput(e, setValue)} {...register("cell_phone")} maxLength={15}/>
                         <p className="erro-update">{errors.cell_phone?.message}</p>
                     </div>
                     <div className="form-button">

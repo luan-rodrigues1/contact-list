@@ -50,30 +50,6 @@ export const ModalUpdateUserStyle = styled.div`
         border: solid 2px #ffffff;
     }
 
-    /* .header-modal-update form button {
-        width: 150px;
-        height: 40px;
-        background-color: #027fe9;
-        border: #ffffff solid 1.5px;
-        border-radius: 30px;
-        font-size: 14px;
-        font-weight: bold;
-        color: #ffffff;
-        transition: 0.6s;
-    } */
-
-    /* .header-modal-update form button:hover {
-        width: 150px;
-        height: 40px;
-        background-color: #027fe9;
-        border: #49A0EC solid 1.5px;
-        border-radius: 30px;
-        font-size: 14px;
-        font-weight: bold;
-        color: #ffffff;
-        transition: 0.6s;
-    } */
-
     .custom-file-upload {
         width: 150px;
         height: 40px;
@@ -119,6 +95,10 @@ export const ModalUpdateUserStyle = styled.div`
     .form-modal-update div label {
         font-size: 14px;
         color: #027FE9;
+    }
+
+    .form-modal-update div input {
+        color: #808080;
     }
 
     .form-modal-update div .input-password-modal{

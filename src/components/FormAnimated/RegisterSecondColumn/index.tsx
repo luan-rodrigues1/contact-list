@@ -1,5 +1,5 @@
 import { RegisterSecondColumnStyle } from "./style"
-import { useForm } from "react-hook-form";
+import { UseFormSetValue, useForm } from "react-hook-form";
 import { formRegistrationSchema } from "../../../schemas/user.schemas";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IRegisterUser } from "../../../interfaces/user.interfaces";
@@ -10,20 +10,17 @@ import openClose from "../../../assets/visibilityclose.png"
 
 const RegisterSecondColumn = () => {
     const formRefRegister = useRef<HTMLFormElement>(null);
-    const {registerUser, buttonLoading} = useContext(AccessContext)
+    const {registerUser, buttonLoading, formatCellInput} = useContext(AccessContext)
     const [visibilityPassword, setVisibilityPassword] = useState<boolean>(false)
     const [visibilityConfirm, setVisibilityConfirm] = useState<boolean>(false)
 
-    const {register, handleSubmit, formState: { errors }} = useForm<IRegisterUser>({
+    const {register, handleSubmit, reset, setValue, formState: { errors }} = useForm<IRegisterUser>({
         resolver: yupResolver(formRegistrationSchema),
     });
 
     const onSubmit = async (data: IRegisterUser) => {
-        await registerUser(data);
-
-        formRefRegister.current?.reset();
+        await registerUser(data, reset);
     };
-    
 
     return (
         <RegisterSecondColumnStyle>
@@ -43,7 +40,7 @@ const RegisterSecondColumn = () => {
                     </div>
                     <div>
                         <label htmlFor="cell_phone">Telefone</label>
-                        <input type="text" placeholder="Digite seu número" id="cell_phone" {...register("cell_phone")}/>
+                        <input type="text" placeholder="Ex: (99) 99999-9999" id="cell_phone" onKeyUp={(e) => formatCellInput(e, setValue)} {...register("cell_phone")} maxLength={15}/>
                         <p>{errors.cell_phone?.message}</p>
                     </div>
                     <div>
